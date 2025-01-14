@@ -42,9 +42,10 @@
 						<h2>Recent Work</h2>
 						<div class="row">
 							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/01.jpg" class="image fit thumb"><img src="images/thumbs/01.jpg" alt="" /></a>
-								<h3>Magna sed consequat tempus</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+								<a href="images/fulls/tadpole.jpg" class="image fit thumb" onclick="changeText(event)"><img src="images/thumbs/tad.jpg" alt="" /></a>
+								<h3 id="tadpole-title">The tadpole G137+7</h3>
+								<p>Faraday tomography with CHIME — Mohammed & Ordog et al. 2024</p>
+								<span class="hidden-caption" style="display: none;">This is the hidden caption text.</span>
 							</article>
 							<article class="col-6 col-12-xsmall work-item">
 								<a href="images/fulls/02.jpg" class="image fit thumb"><img src="images/thumbs/02.jpg" alt="" /></a>
@@ -439,9 +440,8 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<footer id="footer">
 				<div class="inner">
 					<ul class="icons">
-						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="https://x.com/nassergabdalla" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="https://github.com/nassmohammed" class="icon brands fa-github"><span class="label">Github</span></a></li>
 						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 					</ul>
 					<ul class="copyright">
@@ -457,6 +457,14 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+			<script>
+			function changeText(event) {
+				event.preventDefault(); // Prevent the default action of the link
+				var title = document.getElementById('tadpole-title');
+				var description = document.getElementById('tadpole-description');
+				title.textContent = 'New Title Text'; // Change this to the desired new title
+				description.textContent = 'New description text for the expanded article.'; // Change this to the desired new description
+			}
+			</script>
 	</body>
 </html>
