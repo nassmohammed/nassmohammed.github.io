@@ -101,7 +101,7 @@
 				$('#two').poptrox({
 					caption: function($a) { return $a.closest('.work-item').find('span').text(); },
 					overlayColor: '#2c2c2c',
-					overlayOpacity: 0.85,
+					overlayOpacity: 0.6,
 					popupCloserText: '',
 					popupLoaderText: 'Loading',
 					selector: '.work-item a.image',
