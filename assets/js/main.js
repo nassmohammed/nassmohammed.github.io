@@ -98,7 +98,9 @@
 		// Lightbox gallery.
 		$window.on('load', function() {
 			$('#two').poptrox({
-				caption: function($a) { return $a.closest('.work-item').find('.hidden-caption').html(); },
+				caption: function($a) { 
+					return $a.closest('.work-item').find('.hidden-caption').html(); 
+				},
 				overlayColor: '#2c2c2c',
 				overlayOpacity: 0.85,
 				popupCloserText: '',
@@ -108,8 +110,14 @@
 				usePopupDefaultStyling: false,
 				usePopupEasyClose: false,
 				usePopupNav: true,
-				windowMargin: (breakpoints.active('<=small') ? 0 : 50)
+				windowMargin: (breakpoints.active('<=small') ? 0 : 50),
+				onPopupOpen: function() {
+					var $popup = $('#poptrox-popup');
+					var $caption = $popup.find('.caption');
+					var captionWidth = $caption.outerWidth();
+					console.log('Caption Width:', captionWidth); // Debugging
+					$popup.css('width', captionWidth + 40); // Add some padding
+				}
 			});
 		});
-
 })(jQuery);
