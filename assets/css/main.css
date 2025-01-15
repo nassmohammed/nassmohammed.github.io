@@ -2045,17 +2045,17 @@ input, select, textarea {
 	}
 
 		.image:before {
-			-moz-transition: opacity 0.5s ease-in-out;
-			-webkit-transition: opacity 0.5s ease-in-out;
-			-ms-transition: opacity 0.5s ease-in-out;
-			transition: opacity 0.5s ease-in-out;
-			background: url("../../images/bg.jpg"); /* This changes the overlay on thumbnails*/
+			-moz-transition: opacity 0.2s ease-in-out;
+			-webkit-transition: opacity 0.2s ease-in-out;
+			-ms-transition: opacity 0.2s ease-in-out;
+			transition: opacity 0.2s ease-in-out;
+			background: url("images/overlay.png");
 			border-radius: 0.35em;
 			content: '';
 			display: block;
 			height: 100%;
 			left: 0;
-			opacity: 0.3;
+			opacity: 0.5;
 			position: absolute;
 			top: 0;
 			width: 100%;
@@ -2064,16 +2064,23 @@ input, select, textarea {
 		.image.thumb {
 			text-align: center;
 		}
+		
+		.image.thumb img {
+			width: 150px; /* Set the desired width */
+			height: 250px; /* Set the desired height */
+			object-fit: cover; /* Ensure the image covers the entire area */
+			border-radius: 8px; /* Optional: Add rounded corners */
+		}
 
 			.image.thumb:after {
-				-moz-transition: opacity 0.5s ease-in-out;
-				-webkit-transition: opacity 0.5s ease-in-out;
-				-ms-transition: opacity 0.5s ease-in-out;
-				transition: opacity 0.5s ease-in-out;
+				-moz-transition: opacity 0.2s ease-in-out;
+				-webkit-transition: opacity 0.2s ease-in-out;
+				-ms-transition: opacity 0.2s ease-in-out;
+				transition: opacity 0.2s ease-in-out;
 				border-radius: 0.35em;
-				border: solid 3px rgba(19, 4, 4, 0.5);
-				color: #000;
-				content: 'Expand';
+				border: solid 3px rgba(255, 255, 255, 0.5);
+				color: #fff;
+				content: 'View';
 				display: inline-block;
 				font-size: 0.8em;
 				font-weight: 400;
@@ -2094,7 +2101,7 @@ input, select, textarea {
 			}
 
 			.image.thumb:hover:before {
-				background: url("/images/tad.jpg"), url("/images/tad.jpg");
+				background: url("images/overlay.png"), url("images/overlay.png");
 				opacity: 1.0;
 			}
 
@@ -2143,9 +2150,10 @@ input, select, textarea {
 
 			.image.avatar img {
 				border-radius: 100%;
-				width: 100%;
+				width: 150%;
+				margin-left: auto;
+				margin-right: auto;
 			}
-
 /* List */
 
 	ol {
@@ -2633,14 +2641,16 @@ input, select, textarea {
 
 		#header h1 {
 			color: rgba(255, 255, 255, 0.5);
-			font-size: 1.35em;
-			line-height: 1.75em;
-			margin: 0;
+			font-size: 2.3em;
+			line-height: 1.2em;
+			margin: 0; /* Adjust the value as needed */ /* Adjust the value as needed */ /* Adjust the value as needed */
+			font-weight: bold; /* Ensure the text is bold */
 		}
 
 		#header .image.avatar {
 			margin: 0 0 1em 0;
-			width: 6.25em;
+			width: 8.25em;
+			padding-right: 30px;
 		}
 
 /* Footer */
