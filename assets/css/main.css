@@ -1798,9 +1798,9 @@ input, select, textarea {
 	  /* Override for mobile devices */
 	  @media only screen and (max-width: 600px) {
 		header.major h2 {
-		  font-size: 6rem !important;
-		  margin: -5rem 0 0 1rem !important;
-		  opacity: 0.2; /* adjust if needed */
+		  font-size: 1rem !important;
+		  margin: 1rem 0 0 1rem !important;
+		  opacity: 0.8; /* adjust if needed */
 		}
 	  }
 
