@@ -17,9 +17,9 @@
 			<header id="header">
 				<div class="inner">
 					<a href="#" class="image avatar"><img src="images/headshot.png" alt="" /></a>
-					<h1 style="font-size: 3rem"><strong>Nasser Mohammed</strong></h1>
-					</h2>PhD Student at the   
-					University of Toronto</h2>
+					<h1 style="font-size: 3rem; margin-right: -1.1rem;"><strong>Nasser Mohammed</strong></h1>
+					<p style="margin-right: -1.1rem;">PhD Student at the   
+					University of Toronto</p>
 				</div>
 			</header>
 
@@ -421,13 +421,20 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script>
-				$(window).on("scroll", function() {
-				  var scrollPos = $(window).scrollTop();
-				  // Parallax for "About Me" heading (moves upward with a negative multiplier)
-				  $("header.major h2").css("transform", "translateY(" + scrollPos * -0.2 + "px)");
-				  // Parallax for the header inner container (moves downward with a positive multiplier)
-				  $("#header .inner").css("transform", "translateY(" + scrollPos * 0.01 + "px)");
-				});
-			  </script>
+			  $(window).on("scroll", function() {
+				var scrollPos = $(window).scrollTop();
+				
+				// Existing parallax for "About Me" heading
+				$("header.major h2").css("transform", "translateY(" + scrollPos * -0.2 + "px)");
+				
+				// Existing parallax for the header inner container
+				$("#header .inner").css("transform", "translateY(" + scrollPos * 0.01 + "px)");
+				
+				// Increase font size of "Past and Present Projects" as you scroll
+				// Start at 2rem (adjust as needed) then add scrollPos/100
+				var newFontSize = 1.8 + scrollPos / 10000;
+				$("#two h2").css("font-size", newFontSize + "rem");
+			  });
+			</script>
 	</body>
 </html>
