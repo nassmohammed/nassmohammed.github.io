@@ -1793,16 +1793,24 @@ input, select, textarea {
 		font-size: 12rem;
 		margin: -10rem 0 0 2rem;
 		opacity: 0.1;
+		line-height: 0.8;
 	  }
 	  
 	  /* Override for mobile devices */
-	  @media only screen and (max-width: 600px) {
-		header.major h2 {
-		  font-size: 1rem !important;
-		  margin: 1rem 0 0 1rem !important;
-		  opacity: 0.8; /* adjust if needed */
-		}
+	/* For very skinny web browsers */
+	@media only screen and (max-width: 800px) {
+	  #header {
+		width: 90%;
+		padding: 3em 1em;
+		text-align: center;
+		position: relative;
 	  }
+	  header.major h2 {
+		font-size: 1.5em !important;
+		margin: -3rem 0 0 1rem !important;
+		opacity: 0 !important; /* "About Me" is fully transparent on skinny desktops */
+	  }
+	}
 
 /* Form */
 
