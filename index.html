@@ -17,8 +17,8 @@
 			<header id="header">
 				<div class="inner">
 					<a href="#" class="image avatar"><img src="images/headshot.png" alt="" /></a>
-					<h1><strong>Nasser Mohammed</strong></h1>
-					</h2>PhD Student at the  <br /> 
+					<h1 style="font-size: 3rem"><strong>Nasser Mohammed</strong></h1>
+					</h2>PhD Student at the   
 					University of Toronto</h2>
 				</div>
 			</header>
@@ -29,9 +29,12 @@
 				<!-- One -->
 					<section id="one">
 						<header class="major">
-							<h2>About Me</h2>
+																<h2 style="font-size: 12rem; margin: -10rem; margin-top: -2rem; opacity: 0.1; margin-left: 2rem;">About Me</h2>
 						</header>
-						<p>I am a first year PhD Student in the David A. Dunlap Department of Astronomy & Astrophysics. My current research aims to constrain dark matter and the evolution of our Milky Way through the study of Stellar Streams. My past work studied our polarized radio sky with the CHIME instrument as a part of the Global Magneto-Ionic Mapping Survey.</p>
+												<p style="color: #000000; font-size: 1.2em;">
+						  I am a first year PhD Student in the David A. Dunlap Department of Astronomy & Astrophysics. My current research aims to constrain dark matter and the evolution of our Milky Way through the study of Stellar Streams. 
+						 My past work studied our polarized radio sky with the CHIME instrument as a part of the Global Magneto-Ionic Mapping Survey.
+						</p>
 						<ul class="actions">
 							<li><a href="https://ui.adsabs.harvard.edu/search/filter_author_facet_hier_fq_author=AND&filter_author_facet_hier_fq_author=author_facet_hier%3A%221%2FMohammed%2C%20N%2FMohammed%2C%20Nasser%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_author%7D&fq_author=(author_facet_hier%3A%221%2FMohammed%2C%20N%2FMohammed%2C%20Nasser%22)&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&p_=0&q=%20author%3A%22Mohammed%2C%20Nasser%22&sort=date%20desc%2C%20bibcode%20desc" class="button">My Publications</a></li>
 							<li><a href="assets/cv.pdf" class="button" target="_blank">My CV</a></li>
@@ -41,7 +44,7 @@
 
 				<!-- Two -->
 					<section id="two">
-						<h2>Past and Present Projects</h2>
+						<h2 style="color: #000;">Past and Present Projects</h2>
 						<div class="row">
 							<article class="col-6 col-12-xsmall work-item">
 								<a href="images/thumbs/desi_SF.jpg.png" class="image fit thumb"><img src="images/thumbs/desi_SF.jpg.png" alt="" /></a>
@@ -417,5 +420,14 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				$(window).on("scroll", function() {
+				  var scrollPos = $(window).scrollTop();
+				  // Parallax for "About Me" heading (moves upward with a negative multiplier)
+				  $("header.major h2").css("transform", "translateY(" + scrollPos * -0.2 + "px)");
+				  // Parallax for the header inner container (moves downward with a positive multiplier)
+				  $("#header .inner").css("transform", "translateY(" + scrollPos * 0.01 + "px)");
+				});
+			  </script>
 	</body>
 </html>
