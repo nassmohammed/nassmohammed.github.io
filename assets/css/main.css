@@ -2148,11 +2148,12 @@ input, select, textarea {
 				display: none;
 			}
 
+			/* CSS */
 			.image.avatar img {
-				border-radius: 100%;
-				width: 150%;
-				margin-left: auto;
-				margin-right: auto;
+				width: 150px;
+				height: 200px;
+				object-fit: cover; 
+				border-radius: 20%;
 			}
 /* List */
 
