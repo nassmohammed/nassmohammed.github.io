@@ -16,8 +16,8 @@ u, i, center, dl, dt, dd, ol, ul, li, fieldset,
 form, label, legend, table, caption, tbody,
 tfoot, thead, tr, th, td, article, aside,
 canvas, details, embed, figure, figcaption,
-footer, header, hgroup, menu, nav, output, ruby,
-section, summary, time, mark, audio, video {
+footer, header, hgroup, menu, nav, section,
+summary, time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -76,6 +76,7 @@ input, select, textarea {
 
 	html {
 		box-sizing: border-box;
+		scroll-behavior: smooth;
 	}
 
 	*, *:before, *:after {
@@ -361,6 +362,7 @@ input, select, textarea {
 
 		.row > .col-4 {
 			width: 33.33333%;
+			display: flex;
 		}
 
 		.row > .off-4 {
@@ -1789,27 +1791,13 @@ input, select, textarea {
 		margin-top: -0.6em;
 		line-height: 1.5em;
 	}
+
 	header.major h2 {
-		font-size: 12rem;
-		margin: -10rem 0 0 2rem;
-		opacity: 0.1;
-		line-height: 0.8;
-	  }
-	  
-	  /* Override for mobile devices */
-	/* For very skinny web browsers */
-	@media only screen and (max-width: 800px) {
-	  #header {
-		width: 90%;
-		padding: 3em 1em;
-		text-align: center;
-		position: relative;
-	  }
-	  header.major h2 {
-		font-size: 1.5em !important;
-		margin: -3rem 0 0 1rem !important;
-		opacity: 0 !important; /* "About Me" is fully transparent on skinny desktops */
-	  }
+		font-size: 1.5em;
+		margin-bottom: 1.5em;
+		margin-top: 0.5em;
+		color: #444;
+		font-weight: 600;
 	}
 
 /* Form */
@@ -2063,20 +2051,8 @@ input, select, textarea {
 	}
 
 		.image:before {
-			-moz-transition: opacity 0.2s ease-in-out;
-			-webkit-transition: opacity 0.2s ease-in-out;
-			-ms-transition: opacity 0.2s ease-in-out;
-			transition: opacity 0.2s ease-in-out;
-			background: url("images/overlay.png");
-			border-radius: 0.35em;
-			content: '';
-			display: block;
-			height: 100%;
-			left: 0;
-			opacity: 0.5;
-			position: absolute;
-			top: 0;
-			width: 100%;
+			/* Removing the overlay effect by setting opacity to 0 */
+			opacity: 0;
 		}
 
 		.image.thumb {
@@ -2096,15 +2072,15 @@ input, select, textarea {
 				-ms-transition: opacity 0.2s ease-in-out;
 				transition: opacity 0.2s ease-in-out;
 				border-radius: 0.35em;
-				border: solid 3px rgba(255, 255, 255, 0.5);
-				color: #fff;
+				border: solid 2px rgba(255, 255, 255, 0.6);
+				color: rgba(220, 220, 220, 0.8); /* Changed to a greyer color */
 				content: 'Expand';
 				display: inline-block;
-				font-size: 0.8em;
-				font-weight: 400;
+				font-size: 0.9em; /* Reduced from 1.2em */
+				font-weight: 500; /* Reduced weight */
 				left: 50%;
-				line-height: 2.25em;
-				margin: -1.25em 0 0 -3em;
+				line-height: 2.2em;
+				margin: -1em 0 0 -3em;
 				opacity: 0;
 				padding: 0 1.5em;
 				position: absolute;
@@ -2112,6 +2088,10 @@ input, select, textarea {
 				text-decoration: none;
 				top: 50%;
 				white-space: nowrap;
+				text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+				background: rgba(0, 0, 0, 0.6);
+				width: 6em; /* Reduced width */
+				z-index: 10;
 			}
 
 			.image.thumb:hover:after {
@@ -2119,8 +2099,8 @@ input, select, textarea {
 			}
 
 			.image.thumb:hover:before {
-				background: url("images/overlay.png"), url("images/overlay.png");
-				opacity: 1.0;
+				/* Also removing the hover overlay effect */
+				opacity: 0;
 			}
 
 		.image img {
@@ -2140,13 +2120,9 @@ input, select, textarea {
 			top: 0.25em;
 		}
 
-		.image.left, .image.right {
-			max-width: 40%;
+		.image.left img, .image.right img {
+			width: 100%;
 		}
-
-			.image.left img, .image.right img {
-				width: 100%;
-			}
 
 		.image.fit {
 			display: block;
@@ -2159,20 +2135,41 @@ input, select, textarea {
 			}
 
 		.image.avatar {
-			border-radius: 100%;
+			position: relative;
+			width: 220px;
+			height: 220px;
+			margin: 0 auto 2em auto;
+			border-radius: 10px; /* Consistent border-radius */
+			overflow: hidden; /* Changed from visible to hidden to prevent overflow */
+			z-index: 5;
+			padding-right: 0; /* Remove any right padding that might cause misalignment */
 		}
 
 			.image.avatar:before {
 				display: none;
 			}
 
-			/* CSS */
-			.image.avatar img {
-				width: 150px;
-				height: 200px;
-				object-fit: cover; 
-				border-radius: 20%;
+			.image.avatar:after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border-radius: 10px; /* Match the avatar border-radius */
+				box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+				z-index: -1;
 			}
+
+			.image.avatar img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center 40%; /* Shifted up by 10% to better position the face */
+				border-radius: 10px; /* Match the avatar border-radius */
+				display: block;
+			}
+
 /* List */
 
 	ol {
@@ -2469,14 +2466,14 @@ input, select, textarea {
 		-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+		transition: all 0.3s ease;
 		background-color: transparent;
-		border-radius: 0.35em;
+		border-radius: 6px;
 		border: solid 3px #efefef;
 		color: #787878 !important;
 		cursor: pointer;
 		display: inline-block;
-		font-weight: 400;
+		font-weight: 600;
 		height: 3.15em;
 		height: calc(2.75em + 6px);
 		line-height: 2.75em;
@@ -2485,12 +2482,18 @@ input, select, textarea {
 		text-align: center;
 		text-decoration: none;
 		white-space: nowrap;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		font-size: 0.9em;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 	}
 
 		input[type="submit"]:hover,
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
 		.button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 			border-color: #49bf9d;
 			color: #49bf9d !important;
 		}
@@ -2581,23 +2584,61 @@ input, select, textarea {
 /* Work Item */
 
 	.work-item {
-		margin: 0 0 2em 0;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		border-radius: 8px;
+		overflow: hidden;
+		margin-bottom: 2em;
+		border: 1px solid rgba(239, 239, 239, 0.3);
+		padding: 10px;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
 	}
 
-		.work-item .image {
-			margin: 0 0 1.5em 0;
-		}
+	.work-item:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+		border-color: rgba(73, 191, 157, 0.3);
+	}
 
-		.work-item h3 {
-			font-size: 1em;
-			margin: 0 0 0.5em 0;
-		}
+	.work-item .image.fit {
+		margin-bottom: 1em;
+		overflow: hidden;
+		border-radius: 8px;
+		flex-grow: 1;
+		position: relative; /* Added to position the overlay */
+	}
 
-		.work-item p {
-			font-size: 0.8em;
-			line-height: 1.5em;
-			margin: 0;
-		}
+	.work-item .image.fit:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.3); /* Transparent grey overlay */
+		z-index: 1;
+		opacity: 1; /* Show overlay by default */
+		transition: opacity 0.3s ease;
+	}
+
+	.work-item:hover .image.fit:before {
+		opacity: 0; /* Hide overlay on hover */
+	}
+
+	.work-item .image.fit img {
+		transition: transform 0.5s ease;
+		width: 100%;
+		height: 200px; /* Fixed height for consistency */
+		object-fit: cover;
+		position: relative;
+	}
+
+	.work-item h3 {
+		font-weight: 600;
+		margin-bottom: 0.5em;
+		color: #444;
+	}
 
 /* Header */
 
@@ -2620,10 +2661,10 @@ input, select, textarea {
 		justify-content: space-between;
 		background-color: #1f1815;
 		background-attachment: scroll,								scroll;
-		background-image: url("../../images/spiral-galaxy-ngc-1300.jpg"), url("../../images/spiral-galaxy-ngc-1300.jpg");
-		background-position: top left,							top left;
-		background-repeat: repeat,								no-repeat;
-		background-size: auto,								150%;
+		background-image: url("../../images/spiral-galaxy-ngc-1300.jpg");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
 		color: rgba(255, 255, 255, 0.5);
 		height: 100%;
 		left: 0;
@@ -2633,6 +2674,17 @@ input, select, textarea {
 		top: 0;
 		width: 35%;
 	}
+
+		#header:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+			z-index: 0;
+		}
 
 		#header > * {
 			-moz-flex-shrink: 0;
@@ -2648,6 +2700,8 @@ input, select, textarea {
 			-ms-flex-grow: 1;
 			flex-grow: 1;
 			margin: 0 0 2em 0;
+			position: relative;
+			z-index: 1;
 		}
 
 		#header strong, #header b {
@@ -2659,17 +2713,19 @@ input, select, textarea {
 		}
 
 		#header h1 {
-			color: rgba(255, 255, 255, 0.5);
+			color: #ffffff;
 			font-size: 2.3em;
 			line-height: 1.2em;
-			margin: 0; /* Adjust the value as needed */ /* Adjust the value as needed */ /* Adjust the value as needed */
-			font-weight: bold; /* Ensure the text is bold */
+			margin: 0;
+			font-weight: bold;
+			text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+			margin-bottom: 0.5em;
 		}
 
 		#header .image.avatar {
 			margin: 0 0 1em 0;
 			width: 8.25em;
-			padding-right: 35px;
+			padding-right: 0; /* Remove padding that causes misalignment */
 		}
 
 /* Footer */
@@ -2793,6 +2849,42 @@ input, select, textarea {
 			-ms-transform: rotate(360deg);
 			transform: rotate(360deg);
 		}
+	}
+
+	@keyframes fadeIn {
+		from { opacity: 0; transform: translateY(20px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	#one, #two {
+		animation: fadeIn 0.8s ease-out forwards;
+	}
+
+	#two {
+		animation-delay: 0.2s;
+	}
+
+	#two h2 {
+		position: relative;
+		display: inline-block;
+		margin-bottom: 1.5em;
+	}
+
+	#two h2:after {
+		content: '';
+		position: absolute;
+		width: 50px;
+		height: 3px;
+		background: #49bf9d;
+		bottom: -10px;
+		left: 0;
+	}
+
+	#one header.major h2 {
+		font-size: 5rem;
+		margin: -0.5rem;
+		opacity: 0.05;
+		margin-left: 0.5rem;
 	}
 
 	.poptrox-popup {
@@ -2994,11 +3086,7 @@ input, select, textarea {
 /* Touch */
 
 	body.is-touch .image.thumb:before {
-		opacity: 0.5 !important;
-	}
-
-	body.is-touch .image.thumb:after {
-		display: none !important;
+		opacity: 0 !important; /* Remove overlay for touch devices too */
 	}
 
 	body.is-touch #header {
@@ -3011,6 +3099,30 @@ input, select, textarea {
 	body.is-touch .poptrox-popup .closer {
 		opacity: 1.0 !important;
 	}
+
+/* Removing the typewriter effect */
+.typewriter {
+  overflow: visible; /* Changed from hidden to visible */
+  white-space: normal; /* Changed from nowrap to normal */
+  position: relative;
+  display: inline-block;
+  animation: none; /* Removed typing animation */
+}
+
+.typewriter:after {
+  display: none; /* Hide the cursor */
+}
+
+/* Remove animation keyframes references */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { opacity: 0 }
+  50% { opacity: 1 }
+}
 
 /* XLarge */
 
@@ -3091,9 +3203,9 @@ input, select, textarea {
 				background-position: top left, center center;
 				background-size: auto,		cover;
 				left: auto;
-				padding: 6em 4em;
+				padding: 4em 2em;
 				position: relative;
-				text-align: center;
+				text-align: center; /* Changed from left to center */
 				top: auto;
 				width: 100%;
 				display: block;
@@ -3101,10 +3213,34 @@ input, select, textarea {
 
 				#header h1 {
 					font-size: 1.75em;
+					text-align: center; /* Changed from left to center */
+					margin-bottom: 0.5em;
 				}
 
 					#header h1 br {
 						display: inline;
+					}
+
+				#header p {
+					text-align: center; /* Changed from left to center */
+				}
+
+				#header > .inner {
+					display: flex;
+					flex-direction: column;
+					align-items: center; /* Changed from flex-start to center */
+				}
+
+				#header .image.avatar {
+					margin: 0 auto 1.5em auto; /* Changed margins to auto for horizontal centering */
+					width: 180px;
+					height: 180px;
+					align-self: center; /* Changed from flex-start to center */
+				}
+
+					#header .image.avatar img {
+						width: 100%;
+						height: 100%;
 					}
 
 		/* Footer */
@@ -3140,12 +3276,25 @@ input, select, textarea {
 						padding-left: 0.75em;
 					}
 
-		/* Main */
-
+		/* Main - reduced spacing */
 			#main {
 				margin: 0;
-				padding: 6em 4em;
+				padding: 3em 4em; /* Reduced from 6em to 3em */
 				width: 100%;
+			}
+
+			/* About Me section centering */
+			#main #one {
+				text-align: center;
+			}
+
+			#main #one header.major h2 {
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			#main #one .actions {
+				justify-content: center;
 			}
 
 	}
@@ -3198,6 +3347,16 @@ input, select, textarea {
 					font-size: 1.35em;
 				}
 
+			#header .image.avatar {
+				width: 160px; /* Still large on small screens */
+				height: 160px;
+			}
+
+				#header .image.avatar img {
+					width: 100%;
+					height: 100%;
+				}
+
 		/* Footer */
 
 			#footer {
@@ -3207,7 +3366,7 @@ input, select, textarea {
 		/* Main */
 
 			#main {
-				padding: 2.25em 1.5em 0.25em 1.5em;
+				padding: 1.5em 1.5em 0.25em 1.5em; /* Reduced from 2.25em to 1.5em */
 			}
 
 				#main > section {
@@ -3235,11 +3394,21 @@ input, select, textarea {
 		/* Header */
 
 			#header {
-				padding: 4.5em 1.5em;
+				padding: 3em 1.5em; /* Even more compact padding */
 			}
 
 				#header h1 br {
 					display: none;
+				}
+
+				#header .image.avatar {
+					width: 140px; /* Larger than before (was 100px) */
+					height: 140px; /* Larger than before (was 100px) */
+				}
+
+				#header .image.avatar img {
+					width: 100%;
+					height: 100%;
 				}
 
 		/* Footer */
@@ -3250,6 +3419,12 @@ input, select, textarea {
 				line-height: 2.25em;
 				margin-left: 0;
 				padding-left: 0;
+			}
+
+		/* Main */
+
+			#main {
+				padding: 1em 1.5em 0.25em 1.5em; /* Further reduced from 1.5em to 1em */
 			}
 
 	}

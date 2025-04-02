@@ -7,10 +7,36 @@
 <html>
 	<head>
 		<meta name="google-site-verification" content="myb8ksc-NcYwXlOBcHcfMlG6sqRkeNWry6_JDENRs8U" />
-		<title>Nasser Mohammed</title>
+		<title>Nasser Gamal</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			/* Additional dynamic styles */
+			.fade-in {
+				opacity: 0;
+				transform: translateY(20px);
+				transition: opacity 0.5s ease, transform 0.5s ease;
+			}
+			.fade-in.visible {
+				opacity: 1;
+				transform: translateY(0);
+			}
+			.float {
+				animation: floating 3s ease-in-out infinite;
+			}
+			@keyframes floating {
+				0% { transform: translateY(0px); }
+				50% { transform: translateY(-10px); }
+				100% { transform: translateY(0px); }
+			}
+			.highlight-text {
+				color: #49bf9d;
+				font-weight: 600;
+				font-style: italic;
+			}
+			/* Removed typewriter related styles */
+		</style>
 	</head>	
 	<body class="is-preload">
 
@@ -18,9 +44,8 @@
 			<header id="header">
 				<div class="inner">
 					<a href="#" class="image avatar"><img src="images/headshot.png" alt="" /></a>
-					<h1 style="font-size: 3rem; margin-right: -1.1rem;"><strong>Nasser Mohammed</strong></h1>
-					<p style="margin-right: -1.1rem;">PhD Student at the   
-					University of Toronto <br/> Supervisor: Dr. Ting S. Li</p>
+					<h1 style="font-size: 3rem; margin-right: -1.1rem;"><strong>Nasser Gamal Mohammed</strong></h1>
+					<p style="margin-right: -1.1rem;">PhD Student at the University of Toronto <br/> Supervisor: Dr. Ting S. Li</p>
 				</div>
 			</header>
 
@@ -30,10 +55,10 @@
 				<!-- One -->
 					<section id="one">
 						<header class="major">
-																<h2 style="font-size: 12rem; margin: -6rem; margin-top: -2rem; opacity: 0.1; margin-left: 0.5rem;">About Me</h2>
+							<h2 style="font-size: 5rem; margin: -1rem; margin-left: 0.5rem; color: #181818; opacity: 1.0;">About Me</h2>
 						</header>
-												<p style="color: #000000; font-size: 1.2em;">
-						  I am a first year PhD Student in the David A. Dunlap Department of Astronomy & Astrophysics. My current research aims to constrain dark matter and the evolution of our Milky Way through the study of Stellar Streams. 
+						<p style="color: #000000; font-size: 1.2em;">
+						  I am a first year PhD Student in the David A. Dunlap Department of Astronomy & Astrophysics. My current research aims to constrain dark matter and the evolution of our Milky Way through the study of <span class="highlight-text">Stellar Streams</span>. 
 						 My past work studied our polarized radio sky with the CHIME instrument as a part of the Global Magneto-Ionic Mapping Survey.
 						</p>
 						<ul class="actions">
@@ -50,7 +75,7 @@
 							<article class="col-6 col-12-xsmall work-item">
 								<a href="images/thumbs/desi_SF.jpg.png" class="image fit thumb"><img src="images/thumbs/desi_SF.jpg.png" alt="" /></a>
 								<h3>Stellar Streams</h3>
-								<p>Streams are tracers for past merging events in our Milky Way's history.</p>
+								<p>Tracers for past merging events in our Milky Way's history.</p>
 								<span class="hidden-caption" style="display: none;">DESI provides spectroscopic data for ~100 stellar streams.</span>
 							</article>
 							<article class="col-6 col-12-xsmall work-item">
@@ -421,20 +446,26 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+				<script src="assets/js/custom.js"></script>
 			<script>
 			  $(window).on("scroll", function() {
 				var scrollPos = $(window).scrollTop();
 				
-				// Existing parallax for "About Me" heading
-				$("header.major h2").css("transform", "translateY(" + scrollPos * -0.2 + "px)");
 				
-				// Existing parallax for the header inner container
-				$("#header .inner").css("transform", "translateY(" + scrollPos * 0.01 + "px)");
+
+				// More dynamic header inner container movement
+				$("#header .inner").css({
+					"transform": "translateY(" + scrollPos * 0.01 + "px)"
+				});
 				
-				// Increase font size of "Past and Present Projects" as you scroll
-				// Start at 2rem (adjust as needed) then add scrollPos/100
-				var newFontSize = 1.8 + scrollPos / 10000;
-				$("#two h2").css("font-size", newFontSize + "rem");
+				// Dynamic font size and color for section titles
+				var newFontSize = 1.8 + Math.min(0.4, scrollPos / 10000);
+				$("#two h2").css({
+					"font-size": newFontSize + "rem",
+					"color": "rgb(" + Math.min(255, 50 + scrollPos/10) + "," + 
+							Math.min(255, 50 + scrollPos/10) + "," + 
+							Math.min(255, 50 + scrollPos/10) + ")"
+				});
 			  });
 			</script>
 	</body>
