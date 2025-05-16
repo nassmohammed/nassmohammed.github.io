@@ -285,3 +285,39 @@ body.dark-mode .cv-entry ul {
 body.dark-mode .publication em {
     color: #b0b0b0;
 }
+
+/* CV Dark Mode Styles */
+.cv-dark-mode {
+  background: #232221 !important;
+  color: #fff !important;
+}
+.cv-dark-mode h1,
+.cv-dark-mode h2,
+.cv-dark-mode h3,
+.cv-dark-mode h4,
+.cv-dark-mode h5,
+.cv-dark-mode h6,
+.cv-dark-mode strong,
+.cv-dark-mode b {
+  color: #fff !important;
+}
+.cv-dark-mode a {
+  color: #49bf9d !important;
+}
+.cv-dark-mode .button,
+.cv-dark-mode input[type="submit"],
+.cv-dark-mode input[type="button"] {
+  background: #23272a !important;
+  color: #fff !important;
+  border: 1px solid #444 !important;
+}
+.cv-dark-mode .icon {
+  color: #49bf9d !important;
+}
+.cv-dark-mode table,
+.cv-dark-mode th,
+.cv-dark-mode td {
+  background: #232221 !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}

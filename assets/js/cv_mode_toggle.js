@@ -34,4 +34,18 @@
         const btn = document.getElementById(toggleBtnId);
         if (btn) btn.addEventListener('click', toggleMode);
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const btn = document.getElementById('cv-dark-mode-toggle');
+        const cvContainer = document.querySelector('.cv-container');
+        if (!btn || !cvContainer) return;
+        btn.addEventListener('click', function () {
+            cvContainer.classList.toggle('cv-dark-mode');
+            if (cvContainer.classList.contains('cv-dark-mode')) {
+                btn.textContent = '🌞 CV Mode';
+            } else {
+                btn.textContent = '🌓 CV Mode';
+            }
+        });
+    });
 })();
