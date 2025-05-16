@@ -2665,7 +2665,7 @@ input, select, textarea {
 		background-image: url("../../images/spiral-galaxy-ngc-1300.jpg");
 		background-position: center;
 		background-repeat: no-repeat;
-		background-size: cover;
+		background-size: auto;
 		color: rgba(255, 255, 255, 0.5);
 		height: 100%;
 		left: 0;
