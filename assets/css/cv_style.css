@@ -228,3 +228,60 @@ section h2 {
         font-size: 15px; /* Slightly smaller base font */
     }
 }
+
+/* --- Dark Mode --- */
+body.dark-mode {
+    background-color: #181a1b;
+    color: #e0e0e0;
+}
+body.dark-mode .cv-container {
+    background-color: #23272a;
+    border-color: #222;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+body.dark-mode .cv-header {
+    border-bottom: 2px solid #333;
+}
+body.dark-mode .cv-header h1,
+body.dark-mode section h2 {
+    color: #e0e0e0;
+}
+body.dark-mode .cv-header .subtitle,
+body.dark-mode .cv-header .affiliation {
+    color: #b0b0b0;
+}
+body.dark-mode .contact-info,
+body.dark-mode .contact-info span {
+    color: #b0b0b0;
+}
+body.dark-mode .contact-info a {
+    color: #4fa3ff;
+}
+body.dark-mode .skills-interests strong {
+    color: #e0e0e0;
+}
+body.dark-mode section h2 {
+    border-bottom: 2px solid #4fa3ff;
+}
+body.dark-mode .cv-entry h3,
+body.dark-mode .cv-entry h4,
+body.dark-mode .institution,
+body.dark-mode .role {
+    color: #e0e0e0;
+}
+body.dark-mode .date-location {
+    color: #b0b0b0;
+}
+body.dark-mode .cv-footer {
+    border-top: 1px solid #333;
+    color: #b0b0b0;
+}
+body.dark-mode .cv-footer a {
+    color: #4fa3ff;
+}
+body.dark-mode .cv-entry ul {
+    color: #e0e0e0;
+}
+body.dark-mode .publication em {
+    color: #b0b0b0;
+}
