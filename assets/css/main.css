@@ -2588,11 +2588,12 @@ input, select, textarea {
 		border-radius: 8px;
 		overflow: hidden;
 		margin-bottom: 2em;
-		border: 1px solid rgba(239, 239, 239, 0.3);
 		padding: 10px;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
+		border: none !important;
+		box-shadow: none !important;
 	}
 
 	.work-item:hover {
@@ -2773,6 +2774,117 @@ input, select, textarea {
 			#footer .copyright li a {
 				color: inherit;
 			}
+
+/* Ensuring the footer background is truly transparent */
+body.dark-mode #footer, 
+body.dark-mode #footer .inner, 
+body.dark-mode #footer .copyright, 
+body.dark-mode #footer .icons,
+#footer, 
+#footer .inner, 
+#footer .copyright, 
+#footer .icons {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Make sure list items in footer have transparent background */
+body.dark-mode #footer .copyright li,
+body.dark-mode #footer .icons li,
+#footer .copyright li,
+#footer .icons li {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Fix for the button in the footer */
+body.dark-mode #color-mode-toggle,
+#color-mode-toggle {
+  background: rgba(33,34,33,0.5) !important;
+  margin: 18px auto 0 auto !important;
+  display: block !important;
+}
+
+/* Complete fix for dark mode footer background */
+body.dark-mode #footer,
+body.dark-mode #footer *,
+#footer,
+#footer * {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Fix for footer content text color in dark mode */
+body.dark-mode #footer .copyright,
+body.dark-mode #footer .copyright li,
+body.dark-mode #footer .copyright li a,
+body.dark-mode #footer ul.icons li a.icon {
+  color: #fff !important;
+}
+
+/* Style the toggle button specifically */
+body.dark-mode #color-mode-toggle {
+  background: rgba(33, 34, 33, 0.4) !important;
+  color: #49bf9d !important;
+  border: 1px solid #49bf9d !important;
+  border-radius: 4px !important;
+  margin: 18px auto 0 auto !important;
+  display: block !important;
+  opacity: 0.8 !important;
+}
+
+/* Ultra-aggressive fix for any footer backgrounds */
+#footer,
+#footer div,
+#footer ul,
+#footer li,
+#footer a,
+#footer .inner,
+#footer .copyright,
+#footer .icons,
+#footer span,
+body.dark-mode #footer,
+body.dark-mode #footer div,
+body.dark-mode #footer ul,
+body.dark-mode #footer li,
+body.dark-mode #footer a,
+body.dark-mode #footer .inner,
+body.dark-mode #footer .copyright,
+body.dark-mode #footer .icons,
+body.dark-mode #footer span {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* --- Footer Transparency Fix: Always Transparent --- */
+#footer, #footer * {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+body.dark-mode #footer, body.dark-mode #footer *,
+body:not(.dark-mode) #footer, body:not(.dark-mode) #footer * {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
 
 /* Main */
 
@@ -3146,7 +3258,7 @@ body.dark-mode {
 }
 body.dark-mode #main,
 body.dark-mode #footer {
-  background: rgba(33,34,33,0.95) !important;
+  background:none !important;
   color: #fff !important;
 }
 body.dark-mode #header {
