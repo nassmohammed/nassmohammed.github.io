@@ -34,7 +34,50 @@
 				color: #49bf9d;
 				font-weight: 600;
 				font-style: italic;
-				}
+				}            /* New styles for HR toggle */
+            .hr-toggle-container {
+                position: relative; /* For positioning the click text */
+                text-align: center;
+                margin-top: 2em; /* Standard HR margin */
+                margin-bottom: 1.5em; /* Space before dropdown appears */
+                cursor: pointer;
+                padding: 20px 40px; /* Much larger clickable area */
+                transition: background-color 0.2s ease;
+                border-radius: 8px;
+            }
+            .hr-toggle-container:hover {
+                background-color: rgba(73, 191, 157, 0.1); /* Subtle hover effect */
+            }
+            .hr-toggle-container .clickable-hr-visual {
+                border: 0;
+                border-bottom: solid 2px; /* Slightly thicker for visibility */
+                opacity: 0.25; /* Slightly more visible */
+                margin: 0; /* Container handles vertical spacing */
+                transition: opacity 0.2s ease;
+            }
+            .hr-toggle-container:hover .clickable-hr-visual {
+                opacity: 0.4; /* More visible on hover */
+            }
+            .hr-click-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 0.9em; /* Slightly larger text */
+                color: rgba(73, 191, 157, 0.8); /* Use theme color instead of black */
+                background-color: #fff; /* Assuming #main background is white */
+                padding: 5px 15px; /* More padding around text */
+                pointer-events: none; /* So it doesn't interfere with clicking the container */
+                font-style: italic;
+                border-radius: 3px;
+                font-weight: 500; /* Slightly bolder */
+                transition: color 0.2s ease;
+            }
+            .hr-toggle-container:hover .hr-click-text {
+                color: rgba(73, 191, 157, 1); /* Full color on hover */
+            }
+            /* End of new styles */
+
 				/* Mobile-specific styles */
 			@media screen and (max-width: 736px) {
 				#header {
@@ -104,38 +147,47 @@
 							<li><a href="cv.html" class="button" target="_blank">My CV</a></li>
 							<li><a href="https://www.astro.utoronto.ca/people/graduate-students/name/nasser-mohammed/" class="button" target="_blank">UofT Page</a></li>
 						</ul>
+						<!-- Existing <hr /> and the div with the button are replaced by this: -->
+                        <div id="presentations-hr-toggle" class="hr-toggle-container">
+                        </div>
+                        <div class="dropdown-menu-content" style="display: none; margin-top: -0.5em;">
+                            <ul class="actions stacked">
+                                <li><a href="presentations/presentations.html" class="button small">CASCA 2025 Presentation</a></li>
+                                <!-- You can add more presentation links here later -->
+                            </ul>
+                        </div>
 					</section>
 
 				<!-- Two -->
-					<section id="two">
-						<h2 style="color: #000;">Past and Present Projects</h2>
-						<div class="row">
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/desi_SF.jpg.png" class="image fit thumb"><img src="images/thumbs/desi_SF.jpg.png" alt="" /></a>
-								<h3>Stellar Streams</h3>
-								<p>Tracers for past merging events in our Milky Way's history.</p>
-								<span class="hidden-caption" style="display: none;">DESI provides spectroscopic data for ~100 stellar streams.</span>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/fig9.jpg" class="image fit thumb" onclick="changeText(event)"><img src="images/thumbs/tad.jpg" alt="" /></a>
-								<h3 id="tadpole-title">What is the 'tadpole'?</h3>
-								<p>Read more about Mohammed & Ordog et al. 2024</p>
-								<span class="hidden-caption" style="display: none;"> Read more about the tadpole and our discoveries <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ad5099" target="_blank">here</a>. </span>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/collage.jpg" class="image fit thumb" onclick="changeText(event)"><img src="images/thumbs/outreach.jpg" alt="" /></a>
-								<h3 id="tadpole-title">Outreach</h3>
-								<p>Highlights of recent public outreach efforts.</p>
-								<span class="hidden-caption" style="display: none;"> Highlights of recent public outreach efforts. </span>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/finishers.png" class="image fit thumb" onclick="changeText(event)"><img src="images/fulls/finishers.png" alt="" /></a>
-								<h3 id="tadpole-title">Soccer Data Analysis</h3>
-								<p>Hobby sports statistics and analysis.</p>
-								<span class="hidden-caption" style="display: none;"> 2023/24 finishing statistics.</span>
-							</article>
-						</div>
-					</section>
+				<section id="two">
+					<h2 style="color: #000;">Past and Present Projects</h2>
+					<div class="row">
+						<article class="col-6 col-12-xsmall work-item">
+							<a href="images/thumbs/desi_SF.jpg.png" class="image fit thumb"><img src="images/thumbs/desi_SF.jpg.png" alt="" /></a>
+							<h3>Stellar Streams</h3>
+							<p>Tracers for past merging events in our Milky Way's history.</p>
+							<span class="hidden-caption" style="display: none;">DESI provides spectroscopic data for ~100 stellar streams.</span>
+						</article>
+						<article class="col-6 col-12-xsmall work-item">
+							<a href="images/fulls/fig9.jpg" class="image fit thumb" onclick="changeText(event)"><img src="images/thumbs/tad.jpg" alt="" /></a>
+							<h3 id="tadpole-title">What is the 'tadpole'?</h3>
+							<p>Read more about N. Mohammed & Ordog et al. 2024</p>
+							<span class="hidden-caption" style="display: none;"> Read more about the tadpole and our discoveries <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ad5099" target="_blank">here</a>. </span>
+						</article>
+						<article class="col-6 col-12-xsmall work-item">
+							<a href="images/fulls/collage.jpg" class="image fit thumb" onclick="changeText(event)"><img src="images/thumbs/outreach.jpg" alt="" /></a>
+							<h3 id="tadpole-title">Outreach</h3>
+							<p>Highlights of recent public outreach efforts.</p>
+							<span class="hidden-caption" style="display: none;"> Highlights of recent public outreach efforts. </span>
+						</article>
+						<article class="col-6 col-12-xsmall work-item">
+							<a href="images/fulls/finishers.png" class="image fit thumb" onclick="changeText(event)"><img src="images/fulls/finishers.png" alt="" /></a>
+							<h3 id="tadpole-title">Soccer Data Analysis</h3>
+							<p>Hobby sports statistics and analysis.</p>
+							<span class="hidden-caption" style="display: none;"> 2023/24 finishing statistics.</span>
+						</article>
+					</div>
+				</section>
 
 				<!-- Three -->
 
@@ -286,174 +338,174 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 											<td>29.99</td>
 										</tr>
 										<tr>
-											<td>Item Four</td>
-											<td>Vitae integer tempus condimentum.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Five</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-									</tbody>
-									<tfoot>
-										<tr>
-											<td colspan="2"></td>
-											<td>100.00</td>
-										</tr>
-									</tfoot>
-								</table>
-							</div>
+<td>Item Four</td>
+<td>Vitae integer tempus condimentum.</td>
+<td>19.99</td>
+</tr>
+<tr>
+<td>Item Five</td>
+<td>Ante turpis integer aliquet porttitor.</td>
+<td>29.99</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="2"></td>
+<td>100.00</td>
+</tr>
+</tfoot>
+</table>
+</div>
 
-							<h5>Alternate</h5>
-							<div class="table-wrapper">
-								<table class="alt">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Description</th>
-											<th>Price</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Item One</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Two</td>
-											<td>Vis ac commodo adipiscing arcu aliquet.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Three</td>
-											<td> Morbi faucibus arcu accumsan lorem.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Four</td>
-											<td>Vitae integer tempus condimentum.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Five</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-									</tbody>
-									<tfoot>
-										<tr>
-											<td colspan="2"></td>
-											<td>100.00</td>
-										</tr>
-									</tfoot>
-								</table>
-							</div>
-						</section>
+<h5>Alternate</h5>
+<div class="table-wrapper">
+<table class="alt">
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item One</td>
+<td>Ante turpis integer aliquet porttitor.</td>
+<td>29.99</td>
+</tr>
+<tr>
+<td>Item Two</td>
+<td>Vis ac commodo adipiscing arcu aliquet.</td>
+<td>19.99</td>
+</tr>
+<tr>
+<td>Item Three</td>
+<td> Morbi faucibus arcu accumsan lorem.</td>
+<td>29.99</td>
+</tr>
+<tr>
+<td>Item Four</td>
+<td>Vitae integer tempus condimentum.</td>
+<td>19.99</td>
+</tr>
+<tr>
+<td>Item Five</td>
+<td>Ante turpis integer aliquet porttitor.</td>
+<td>29.99</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="2"></td>
+<td>100.00</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</section>
 
-						<section>
-							<h4>Buttons</h4>
-							<ul class="actions">
-								<li><a href="#" class="button primary">Primary</a></li>
-								<li><a href="#" class="button">Default</a></li>
-							</ul>
-							<ul class="actions">
-								<li><a href="#" class="button large">Large</a></li>
-								<li><a href="#" class="button">Default</a></li>
-								<li><a href="#" class="button small">Small</a></li>
-							</ul>
-							<ul class="actions fit">
-								<li><a href="#" class="button primary fit">Fit</a></li>
-								<li><a href="#" class="button fit">Fit</a></li>
-							</ul>
-							<ul class="actions fit small">
-								<li><a href="#" class="button primary fit small">Fit + Small</a></li>
-								<li><a href="#" class="button fit small">Fit + Small</a></li>
-							</ul>
-							<ul class="actions">
-								<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-								<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-							</ul>
-							<ul class="actions">
-								<li><span class="button primary disabled">Primary</span></li>
-								<li><span class="button disabled">Default</span></li>
-							</ul>
-						</section>
+<section>
+<h4>Buttons</h4>
+<ul class="actions">
+<li><a href="#" class="button primary">Primary</a></li>
+<li><a href="#" class="button">Default</a></li>
+</ul>
+<ul class="actions">
+<li><a href="#" class="button large">Large</a></li>
+<li><a href="#" class="button">Default</a></li>
+<li><a href="#" class="button small">Small</a></li>
+</ul>
+<ul class="actions fit">
+<li><a href="#" class="button primary fit">Fit</a></li>
+<li><a href="#" class="button fit">Fit</a></li>
+</ul>
+<ul class="actions fit small">
+<li><a href="#" class="button primary fit small">Fit + Small</a></li>
+<li><a href="#" class="button fit small">Fit + Small</a></li>
+</ul>
+<ul class="actions">
+<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+</ul>
+<ul class="actions">
+<li><span class="button primary disabled">Primary</span></li>
+<li><span class="button disabled">Default</span></li>
+</ul>
+</section>
 
-						<section>
-							<h4>Form</h4>
-							<form method="post" action="#">
-								<div class="row gtr-uniform gtr-50">
-									<div class="col-6 col-12-xsmall">
-										<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
-									</div>
-									<div class="col-6 col-12-xsmall">
-										<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
-									</div>
-									<div class="col-12">
-										<select name="demo-category" id="demo-category">
-											<option value="">- Category -</option>
-											<option value="1">Manufacturing</option>
-											<option value="1">Shipping</option>
-											<option value="1">Administration</option>
-											<option value="1">Human Resources</option>
-										</select>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-										<label for="demo-priority-low">Low Priority</label>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-normal" name="demo-priority">
-										<label for="demo-priority-normal">Normal Priority</label>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-high" name="demo-priority">
-										<label for="demo-priority-high">High Priority</label>
-									</div>
-									<div class="col-6 col-12-small">
-										<input type="checkbox" id="demo-copy" name="demo-copy">
-										<label for="demo-copy">Email me a copy of this message</label>
-									</div>
-									<div class="col-6 col-12-small">
-										<input type="checkbox" id="demo-human" name="demo-human" checked>
-										<label for="demo-human">I am a human and not a robot</label>
-									</div>
-									<div class="col-12">
-										<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-									</div>
-									<div class="col-12">
-										<ul class="actions">
-											<li><input type="submit" value="Send Message" class="primary" /></li>
-											<li><input type="reset" value="Reset" /></li>
-										</ul>
-									</div>
-								</div>
-							</form>
-						</section>
+<section>
+<h4>Form</h4>
+<form method="post" action="#">
+<div class="row gtr-uniform gtr-50">
+<div class="col-6 col-12-xsmall">
+<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+</div>
+<div class="col-6 col-12-xsmall">
+<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+</div>
+<div class="col-12">
+<select name="demo-category" id="demo-category">
+<option value="">- Category -</option>
+<option value="1">Manufacturing</option>
+<option value="1">Shipping</option>
+<option value="1">Administration</option>
+<option value="1">Human Resources</option>
+</select>
+</div>
+<div class="col-4 col-12-small">
+<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+<label for="demo-priority-low">Low Priority</label>
+</div>
+<div class="col-4 col-12-small">
+<input type="radio" id="demo-priority-normal" name="demo-priority">
+<label for="demo-priority-normal">Normal Priority</label>
+</div>
+<div class="col-4 col-12-small">
+<input type="radio" id="demo-priority-high" name="demo-priority">
+<label for="demo-priority-high">High Priority</label>
+</div>
+<div class="col-6 col-12-small">
+<input type="checkbox" id="demo-copy" name="demo-copy">
+<label for="demo-copy">Email me a copy of this message</label>
+</div>
+<div class="col-6 col-12-small">
+<input type="checkbox" id="demo-human" name="demo-human" checked>
+<label for="demo-human">I am a human and not a robot</label>
+</div>
+<div class="col-12">
+<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+</div>
+<div class="col-12">
+<ul class="actions">
+<li><input type="submit" value="Send Message" class="primary" /></li>
+<li><input type="reset" value="Reset" /></li>
+</ul>
+</div>
+</div>
+</form>
+</section>
 
-						<section>
-							<h4>Image</h4>
-							<h5>Fit</h5>
-							<div class="box alt">
-								<div class="row gtr-50 gtr-uniform">
-									<div class="col-12"><span class="image fit"><img src="images/fulls/05.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/04.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/05.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/06.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
-								</div>
-							</div>
-							<h5>Left &amp; Right</h5>
-							<p><span class="image left"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-							<p><span class="image right"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-						</section>
+<section>
+<h4>Image</h4>
+<h5>Fit</h5>
+<div class="box alt">
+<div class="row gtr-50 gtr-uniform">
+<div class="col-12"><span class="image fit"><img src="images/fulls/05.jpg" alt="" /></span></div>
+<div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
+<div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
+<div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
+<div class="col-4"><span class="image fit"><img src="images/thumbs/04.jpg" alt="" /></span></div>
+<div class="col-4"><span class="image fit"><img src="images/thumbs/05.jpg" alt="" /></span></div>
+<div class="col-4"><span class="image fit"><img src="images/thumbs/06.jpg" alt="" /></span></div>
+<div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
+<div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
+<div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
+</div>
+</div>
+<h5>Left &amp; Right</h5>
+<p><span class="image left"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+<p><span class="image right"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+</section>
 
 					</section>
 				-->
@@ -488,5 +540,24 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/custom.js"></script>
 			<script src="assets/js/cv_mode_toggle.js"></script>
 			<script src="assets/js/footer-fix.js"></script>
+			<script> // The previous script for dropdown is replaced by this one
+			document.addEventListener('DOMContentLoaded', function() {
+			    const toggleContainer = document.getElementById('presentations-hr-toggle');
+			    if (toggleContainer) {
+			        const dropdownMenu = toggleContainer.nextElementSibling; // The div.dropdown-menu-content
+
+			        if (dropdownMenu && dropdownMenu.classList.contains('dropdown-menu-content')) {
+			            toggleContainer.addEventListener('click', function(event) {
+			                event.preventDefault(); // Prevent any default action if it were, say, an anchor
+			                if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
+			                    dropdownMenu.style.display = 'block';
+			                } else {
+			                    dropdownMenu.style.display = 'none';
+			                }
+			            });
+			        }
+			    }
+			});
+			</script>
 	</body>
 </html>
