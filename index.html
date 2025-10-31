@@ -37,32 +37,34 @@
 				}            /* New styles for HR toggle */
             .hr-toggle-container {
                 position: relative; /* For positioning the click text */
-                text-align: center;
-                margin-top: 2em; /* Standard HR margin */
-                margin-bottom: 1.5em; /* Space before dropdown appears */
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: -1em; /* Standard HR margin */
+                margin-bottom: 0.75em; /* Space before dropdown appears */
                 cursor: pointer;
                 padding: 20px 40px; /* Much larger clickable area */
                 transition: background-color 0.2s ease;
                 border-radius: 8px;
             }
+            .hr-toggle-container::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 50%;
+                border-bottom: solid 2px rgba(73, 191, 157, 0.25);
+                transform: translateY(-50%);
+                transition: border-color 0.2s ease, opacity 0.2s ease;
+            }
             .hr-toggle-container:hover {
                 background-color: rgba(73, 191, 157, 0.1); /* Subtle hover effect */
             }
-            .hr-toggle-container .clickable-hr-visual {
-                border: 0;
-                border-bottom: solid 2px; /* Slightly thicker for visibility */
-                opacity: 0.25; /* Slightly more visible */
-                margin: 0; /* Container handles vertical spacing */
-                transition: opacity 0.2s ease;
-            }
-            .hr-toggle-container:hover .clickable-hr-visual {
-                opacity: 0.4; /* More visible on hover */
+            .hr-toggle-container:hover::before {
+                opacity: 0.6;
             }
             .hr-click-text {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                position: relative;
                 font-size: 0.9em; /* Slightly larger text */
                 color: rgba(73, 191, 157, 0.8); /* Use theme color instead of black */
                 background-color: #fff; /* Assuming #main background is white */
@@ -126,7 +128,7 @@
 				<div class="inner">
 					<a href="#" class="image avatar"><img src="images/galarch.png" alt="" /></a>
 					<h1 style="font-size: 3rem; margin-right: -1.1rem;"><strong>Nasser Mohammed</strong></h1>
-					<p style="margin-right: -1.1rem;">PhD Student at the University of Toronto <br/> LSST DA Data Science Fellow 2025-2027</p>
+					<p style="margin-right: -1.1rem;">PhD Student at the University of Toronto <br/> LSST DA Data Science Fellow 2025-2027 <br/> <br/>  Dunlap Institute Halloween Costume Contest <br/>  —Judge's Choice 1st Place,  2025</p>
 				</div>
 			</header>
 
@@ -150,7 +152,6 @@
 						<!-- Existing <hr /> and the div with the button are replaced by this: -->
                         <div id="presentations-hr-toggle" class="hr-toggle-container">
                             <span class="hr-click-text">Extra</span>
-                            <hr class="clickable-hr-visual" />
                         </div>
                         <div class="dropdown-menu-content" style="display: none; margin-top: -0.5em;">
                             <ul class="actions stacked">
