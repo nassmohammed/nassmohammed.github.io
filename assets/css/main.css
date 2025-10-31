@@ -2136,11 +2136,11 @@ input, select, textarea {
 
 		.image.avatar {
 			position: relative;
-			width: 220px;
-			height: 220px;
+			display: inline-block;
+			max-width: 100%;
 			margin: 0 auto 2em auto;
 			border-radius: 10px; /* Consistent border-radius */
-			overflow: hidden; /* Changed from visible to hidden to prevent overflow */
+			overflow: hidden; /* Keep overflow hidden to preserve rounded corners */
 			z-index: 5;
 			padding-right: 0; /* Remove any right padding that might cause misalignment */
 		}
@@ -2163,10 +2163,10 @@ input, select, textarea {
 
 			.image.avatar img {
 				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				object-position: 30% center; /* Crop more from the left */
-				border-radius: 10px; /* Match the avatar border-radius */
+				height: auto;
+				object-fit: contain;
+				object-position: center;
+				border-radius: inherit;
 				display: block;
 			}
 
@@ -2725,7 +2725,8 @@ input, select, textarea {
 
 		#header .image.avatar {
 			margin: 0 0 1em 0;
-			width: 8.25em;
+			width: 100%;
+			max-width: 460px;
 			padding-right: 0; /* Remove padding that causes misalignment */
 		}
 
@@ -3417,14 +3418,15 @@ body.dark-mode .work-item p {
 
 				#header .image.avatar {
 					margin: 0 auto 1.5em auto; /* Changed margins to auto for horizontal centering */
-					width: 180px;
-					height: 180px;
+					width: 100%;
+					max-width: 460px;
+					height: auto;
 					align-self: center; /* Changed from flex-start to center */
 				}
 
 					#header .image.avatar img {
 						width: 100%;
-						height: 100%;
+						height: auto;
 					}
 
 		/* Footer */
@@ -3526,15 +3528,17 @@ body.dark-mode .work-item p {
 					font-size: 1.35em;
 				}
 
-			#header .image.avatar {
-				width: 160px; /* Still large on small screens */
-				height: 160px;
-			}
+		#header .image.avatar {
+			width: 100%;
+			max-width: 360px;
+			height: auto;
+			margin: 0 auto 1.5em auto;
+		}
 
-				#header .image.avatar img {
-					width: 100%;
-					height: 100%;
-				}
+			#header .image.avatar img {
+				width: 100%;
+				height: auto;
+			}
 
 		/* Footer */
 
@@ -3580,15 +3584,17 @@ body.dark-mode .work-item p {
 					display: none;
 				}
 
-				#header .image.avatar {
-					width: 140px; /* Larger than before (was 100px) */
-					height: 140px; /* Larger than before (was 100px) */
-				}
+			#header .image.avatar {
+				width: 100%;
+				max-width: 300px;
+				height: auto;
+				margin: 0 auto 1.25em auto;
+			}
 
-				#header .image.avatar img {
-					width: 100%;
-					height: 100%;
-				}
+			#header .image.avatar img {
+				width: 100%;
+				height: auto;
+			}
 
 		/* Footer */
 
