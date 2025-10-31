@@ -3418,15 +3418,14 @@ body.dark-mode .work-item p {
 
 				#header .image.avatar {
 					margin: 0 auto 1.5em auto; /* Changed margins to auto for horizontal centering */
-					width: 100%;
-					max-width: 460px;
-					height: auto;
+					width: 180px;
+					height: 180px;
 					align-self: center; /* Changed from flex-start to center */
 				}
 
 					#header .image.avatar img {
 						width: 100%;
-						height: auto;
+						height: 100%;
 					}
 
 		/* Footer */
@@ -3528,17 +3527,15 @@ body.dark-mode .work-item p {
 					font-size: 1.35em;
 				}
 
-		#header .image.avatar {
-			width: 100%;
-			max-width: 360px;
-			height: auto;
-			margin: 0 auto 1.5em auto;
-		}
-
-			#header .image.avatar img {
-				width: 100%;
-				height: auto;
+			#header .image.avatar {
+				width: 160px; /* Still large on small screens */
+				height: 160px;
 			}
+
+				#header .image.avatar img {
+					width: 100%;
+					height: 100%;
+				}
 
 		/* Footer */
 
@@ -3584,17 +3581,15 @@ body.dark-mode .work-item p {
 					display: none;
 				}
 
-			#header .image.avatar {
-				width: 100%;
-				max-width: 300px;
-				height: auto;
-				margin: 0 auto 1.25em auto;
-			}
+				#header .image.avatar {
+					width: 140px; /* Larger than before (was 100px) */
+					height: 140px; /* Larger than before (was 100px) */
+				}
 
-			#header .image.avatar img {
-				width: 100%;
-				height: auto;
-			}
+				#header .image.avatar img {
+					width: 100%;
+					height: 100%;
+				}
 
 		/* Footer */
 
