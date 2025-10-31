@@ -2137,7 +2137,7 @@ input, select, textarea {
 		.image.avatar {
 			position: relative;
 			display: inline-block;
-			max-width: 100%;
+			max-width: 200%;
 			margin: 0 auto 2em auto;
 			border-radius: 10px; /* Consistent border-radius */
 			overflow: hidden; /* Keep overflow hidden to preserve rounded corners */
