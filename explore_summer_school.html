@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXPLORE Summer School 2025 - DESI DR1 Stream Tutorial</title>
+    <style>
+        :root {
+            /* Light mode variables - matching index.html */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7f7f7;
+            --bg-accent: rgba(73, 191, 157, 0.08);
+            --text-primary: #787878;
+            --text-secondary: #a2a2a2;
+            --text-accent: #49bf9d;
+            --border-color: #efefef;
+            --card-bg: #ffffff;
+            --card-shadow: rgba(0, 0, 0, 0.05);
+            --button-bg: #49bf9d;
+            --button-hover: #3da58a;
+            --strong-text: #444;
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode variables - softer than before */
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2a2a2a;
+            --bg-accent: rgba(73, 191, 157, 0.1);
+            --text-primary: #b2b2b2;
+            --text-secondary: #888888;
+            --text-accent: #49bf9d;
+            --border-color: #444444;
+            --card-bg: #2a2a2a;
+            --card-shadow: rgba(0, 0, 0, 0.2);
+            --button-bg: #49bf9d;
+            --button-hover: #3da58a;
+            --strong-text: #cccccc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Source Sans Pro", Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 16pt;
+            font-weight: 400;
+            line-height: 1.75em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            width: 100%;
+        }
+
+        .left-section {
+            flex: 0 0 35%;
+            background: var(--bg-secondary);
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            border-right: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 60px 40px;
+            overflow-y: auto;
+            background: var(--bg-primary);
+        }
+
+        .mode-toggle {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: var(--button-bg);
+            border: none;
+            border-radius: 25px;
+            padding: 8px 16px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .mode-toggle:hover {
+            background: var(--button-hover);
+            transform: translateY(-2px);
+        }
+
+        .header-content {
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 2.25em;
+            margin-bottom: 0.5em;
+            color: var(--strong-text);
+            font-weight: 400;
+            line-height: 1em;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-bottom: 2em;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .intro-text {
+            font-size: 1em;
+            color: var(--text-secondary);
+            margin-bottom: 2em;
+            line-height: 1.75em;
+        }
+
+        .button-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.75em 1.5em;
+            font-size: 1em;
+            color: white;
+            background: var(--button-bg);
+            border: none;
+            border-radius: 0;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            font-weight: 400;
+            cursor: pointer;
+            text-align: center;
+            border-bottom: none;
+        }
+
+        .button:hover {
+            background: var(--button-hover);
+            transform: none;
+            box-shadow: none;
+            color: white;
+        }
+
+        .button.secondary {
+            background: var(--text-primary);
+            color: white;
+        }
+
+        .button.secondary:hover {
+            background: var(--strong-text);
+            color: white;
+        }
+
+        .content-section {
+            max-width: 800px;
+        }
+
+        .description {
+            font-size: 1em;
+            margin: 2em 0;
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+            border-left: none;
+            line-height: 1.75em;
+        }
+
+        .description h3 {
+            color: var(--strong-text);
+            margin-top: 0;
+            margin-bottom: 1em;
+            font-weight: 400;
+            font-size: 1.5em;
+            line-height: 1em;
+        }
+
+        .description p {
+            margin-bottom: 2em;
+            color: var(--text-primary);
+        }
+
+        .section-title {
+            color: var(--strong-text);
+            margin: 3em 0 1em 0;
+            font-size: 1.5em;
+            font-weight: 400;
+            line-height: 1em;
+        }
+
+        .cheatsheets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2em;
+            margin: 2em 0;
+        }
+
+        .cheatsheet-card {
+            background: var(--card-bg);
+            padding: 2em;
+            border-radius: 0;
+            border: solid 2px var(--border-color);
+            transition: all 0.2s ease-in-out;
+            text-align: left;
+        }
+
+        .cheatsheet-card:hover {
+            border-color: var(--text-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--card-shadow);
+        }
+
+        .cheatsheet-card h4 {
+            color: var(--strong-text);
+            margin-bottom: 1em;
+            font-weight: 400;
+            font-size: 1.25em;
+            line-height: 1em;
+        }
+
+        .cheatsheet-card p {
+            color: var(--text-primary);
+            margin-bottom: 2em;
+            font-size: 1em;
+            line-height: 1.75em;
+        }
+
+        .cheatsheet-card a {
+            color: var(--text-accent);
+            text-decoration: none;
+            font-weight: 400;
+            border: solid 1px var(--text-accent);
+            padding: 0.75em 1.5em;
+            border-radius: 0;
+            display: inline-block;
+            transition: all 0.2s ease-in-out;
+            font-size: 0.9em;
+            border-bottom: dotted 1px;
+        }
+
+        .cheatsheet-card a:hover {
+            background: var(--text-accent);
+            color: white;
+            border-bottom-color: transparent;
+        }
+
+        .getting-started {
+            margin-top: 3em;
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+            border-left: none;
+        }
+
+        .getting-started h4 {
+            color: var(--strong-text);
+            margin-top: 0;
+            margin-bottom: 1em;
+            font-weight: 400;
+            font-size: 1.25em;
+            line-height: 1em;
+        }
+
+        .getting-started p {
+            margin-bottom: 0;
+            color: var(--text-primary);
+            line-height: 1.75em;
+        }
+
+        footer {
+            background: transparent;
+            padding: 20px 0;
+            text-align: left;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-top: auto;
+        }
+
+        footer a {
+            color: var(--text-accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 1024px) {
+            .page-wrapper {
+                flex-direction: column;
+            }
+            
+            .left-section {
+                flex: none;
+                padding: 40px 30px;
+                text-align: center;
+            }
+            
+            .header-content {
+                text-align: center;
+            }
+            
+            .right-section {
+                padding: 40px 30px;
+            }
+            
+            .mode-toggle {
+                position: static;
+                margin-bottom: 30px;
+                align-self: center;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .button-section {
+                flex-direction: row;
+                justify-content: center;
+                gap: 20px;
+            }
+            
+            .cheatsheets-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .cheatsheet-card {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-section,
+            .right-section {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .button-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .cheatsheets-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="left-section">
+            <button class="mode-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+            <div class="header-content">
+                <h1>DESI DR1 Stream Tutorial</h1>
+                <p class="subtitle">EXPLORE Summer School 2025</p>
+                <p class="intro-text">Learn to identify, characterize, and study stellar streams using DESI Data Release 1. This tutorial uses finite mixture models to disentangle stellar streams from surrounding stars.</p>
+                
+                <div class="button-section">
+                    <a href="https://github.com/nassmohammed/DESI-DR1_streamTutorial" class="button" target="_blank" rel="noopener noreferrer">
+                        📚 View on GitHub
+                    </a>
+                    <a href="https://github.com/nassmohammed/DESI-DR1_streamTutorial/archive/refs/heads/main.zip" class="button secondary" target="_blank">
+                        💾 Download Tutorial
+                    </a>
+                </div>
+            </div>
+            
+            <footer>
+                <p><a href="index.html">← Back to Personal Website</a></p>
+            </footer>
+        </div>
+        
+        <div class="right-section">
+            <div class="content-section">
+                <div class="description">
+                    <h3>Background</h3>
+                    <p>Milky Way-like galaxies evolved hierarchically, accreting mass through many mergers within a dark matter (DM) halo. Stellar streams are a result of this process; a host galaxy's potential disrupts satellites (dwarf galaxies, globular clusters) leading them to form tidal tails.</p>
+                    
+                    <p>Theories of cold and alternative DM disagree on predictions at the sub-galactic scale. Stellar streams offer a powerful means to indirectly constrain the DM substructure within the Milky Way.</p>
+                    
+                    <p>However, to do this we need robust membership counts for stellar streams within our Galaxy. There are multiple ways to approach characterizing streams, but in this tutorial you will be walked through using finite mixture models to disentangle stellar streams from surrounding stars.</p>
+                    
+                    <h3>Mixture Modelling</h3>
+                    <p>Mixture models are powerful statistical tools to describe a set of datapoints that come from different distinct populations, even if we can't directly observe which data points belong to which group. In this tutorial, we will assume that the field of stars we narrow in on can be described by two distinct gaussian populations: one for the stream, and one for the 'background' (non-stream stars).</p>
+                </div>
+
+                <div class="button-section">
+                    <a href="https://github.com/nassmohammed/DESI-DR1_streamTutorial" class="button" target="_blank" rel="noopener noreferrer">
+                        📚 View on GitHub
+                    </a>
+                    <a href="https://github.com/nassmohammed/DESI-DR1_streamTutorial/archive/refs/heads/main.zip" class="button secondary" target="_blank">
+                        💾 Download Tutorial
+                    </a>
+                </div>
+
+                <h3 class="section-title">� Stream Analysis Cheatsheets</h3>
+                <div class="cheatsheets-grid">
+                    <div class="cheatsheet-card">
+                        <h4>Gaia-9 Stream</h4>
+                        <p>Analysis of the metal-poor Gaia-9 stellar stream using DESI DR1 spectroscopic data.</p>
+                        <a href="html_ex/gaia9.html" target="_blank">View Example →</a>
+                    </div>
+                    <div class="cheatsheet-card">
+                        <h4>C-20 Stream (HR Diagram)</h4>
+                        <p>Hertzsprung-Russell diagram analysis for the C-20 stellar stream population.</p>
+                        <a href="html_ex/hrid.html" target="_blank">View Example →</a>
+                    </div>
+                    <div class="cheatsheet-card">
+                        <h4>C-20 Stream (Identification)</h4>
+                        <p>Stream identification techniques applied to the C-20 stellar stream system.</p>
+                        <a href="html_ex/slidr.html" target="_blank">View Example →</a>
+                    </div>
+                    <div class="cheatsheet-card">
+                        <h4>C-20 Stream (Dynamics)</h4>
+                        <p>Orbital analysis and dynamical modeling of the C-20 stellar stream.</p>
+                        <a href="html_ex/sylgr.html" target="_blank">View Example →</a>
+                    </div>
+                </div>
+
+                <div class="getting-started">
+                    <h4>🚀 Get Started</h4>
+                    <p>Clone the repository, install the requirements using the provided <code>env.yml</code> file, and launch Jupyter to start exploring stellar streams with DESI data. The main tutorial is in <code>streamTutorial.ipynb</code>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('explore-theme', newTheme);
+        }
+
+        // Initialize theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('explore-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+            
+            document.documentElement.setAttribute('data-theme', theme);
+        });
+    </script>
+</body>
+</html>
