@@ -109,7 +109,6 @@
 				usePopupCaption: true,
 				usePopupDefaultStyling: false,
 				usePopupEasyClose: false,
-				usePopupNav: true,
 				windowMargin: (breakpoints.active('<=small') ? 0 : 50),
 				onPopupOpen: function() {
 					var $popup = $('#poptrox-popup');
