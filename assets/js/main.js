@@ -95,11 +95,22 @@
 
 	// Main Sections: Two.
 
-		// Lightbox gallery.
+		// Lightbox gallery (opt-in).
 		$window.on('load', function() {
-			$('#two').poptrox({
-				caption: function($a) { 
-					return $a.closest('.work-item').find('.hidden-caption').html(); 
+			var $two = $('#two');
+			if ($two.length === 0)
+				return;
+
+			// Only enable if explicitly requested by the page.
+			if (!$two.is('[data-lightbox="true"]'))
+				return;
+
+			if (!$.fn.poptrox)
+				return;
+
+			$two.poptrox({
+				caption: function($a) {
+					return $a.closest('.work-item').find('.hidden-caption').html();
 				},
 				overlayColor: '#2c2c2c',
 				overlayOpacity: 0.85,
@@ -108,15 +119,44 @@
 				selector: '.work-item a.image',
 				usePopupCaption: true,
 				usePopupDefaultStyling: false,
-				usePopupEasyClose: false,
-				windowMargin: (breakpoints.active('<=small') ? 0 : 50),
-				onPopupOpen: function() {
-					var $popup = $('#poptrox-popup');
-					var $caption = $popup.find('.caption');
-					var captionWidth = $caption.outerWidth();
-					console.log('Caption Width:', captionWidth); // Debugging
-					$popup.css('width', captionWidth + 40); // Add some padding
-				}
+				usePopupEasyClose: true,
+				windowMargin: (breakpoints.active('<=small') ? 0 : 50)
+			});
+		});
+
+	// Highlights: expand details within the card (no popups).
+		$window.on('load', function() {
+			var $two = $('#two');
+			if ($two.length === 0)
+				return;
+
+			if (!$two.is('[data-inline-expand="card"]'))
+				return;
+
+			var collapseAllExcept = function($keep) {
+				$two.find('.work-item.is-expanded').not($keep).each(function() {
+					var $item = $(this);
+					$item.removeClass('is-expanded');
+					$item.find('.work-item-details').attr('aria-hidden', 'true');
+				});
+			};
+
+			$two.on('click', '.work-item', function(e) {
+				// Don't steal clicks from links inside the card.
+				if ($(e.target).closest('a, button').length)
+					return;
+
+				var $item = $(this);
+				var $details = $item.find('.work-item-details').first();
+				if ($details.length === 0)
+					return;
+
+				var isExpanded = $item.hasClass('is-expanded');
+				if (!isExpanded)
+					collapseAllExcept($item);
+
+				$item.toggleClass('is-expanded', !isExpanded);
+				$details.attr('aria-hidden', String(isExpanded));
 			});
 		});
 })(jQuery);
