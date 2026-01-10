@@ -3061,6 +3061,33 @@ body:not(.dark-mode) #footer, body:not(.dark-mode) #footer * {
 		width: calc(100% - 35%);
 	}
 
+/* Footer (desktop sidebar) */
+
+	#footer {
+		bottom: 0;
+		left: 0;
+		padding: 0 4em 3em 4em;
+		position: fixed;
+		text-align: right;
+		width: 35%;
+		z-index: 1;
+	}
+
+		#footer > .inner {
+			margin: 0;
+			width: 100%;
+		}
+
+		#footer .icons {
+			margin: 0 0 1em 0;
+			text-align: right;
+		}
+
+		#footer .copyright {
+			margin: 0;
+			text-align: right;
+		}
+
 			#main > section:first-child {
 				border-top: 0;
 				margin-top: 0;
