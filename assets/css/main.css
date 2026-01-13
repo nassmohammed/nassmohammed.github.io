@@ -2686,19 +2686,42 @@ input, select, textarea {
 		-ms-justify-content: space-between;
 		justify-content: space-between;
 		background-color: #1f1815;
-		background-attachment: scroll,								scroll;
-		background-image: url("../../images/spiral-galaxy-ngc-1300.jpg");
+		background-attachment: scroll,							scroll;
+		background-image: none;
 		background-position: center;
 		background-repeat: no-repeat;
-		background-size: auto;
+		background-size: cover;
 		color: rgba(255, 255, 255, 0.5);
 		height: 100%;
 		left: 0;
 		padding: 8em 4em;
 		position: fixed;
+		overflow: hidden;
+		z-index: 10;
 		text-align: right;
 		top: 0;
 		width: 35%;
+	}
+
+	#header::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: url("../../images/spiral-galaxy-ngc-1300.jpg");
+		background-position: 0% center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		transform: translateY(var(--header-parallax-y, 0px)) scale(1.15);
+		will-change: transform;
+		z-index: 0;
+	}
+
+	#header > * {
+		position: relative;
+		z-index: 1;
 	}
 
 		#header > * {
@@ -3472,11 +3495,11 @@ body:not(.dark-mode) #footer, body:not(.dark-mode) #footer * {
 body.dark-mode {
   background-color: #212221 !important;
   color: #fff !important;
-  background-image: url('../images/bg.jpg') !important;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-  background-position: center center !important;
+	background-image: url('../images/bg.jpg') !important;
+	background-size: cover !important;
+	background-repeat: no-repeat !important;
+	background-attachment: fixed !important;
+	background-position: center center !important;
 }
 body.dark-mode #main,
 body.dark-mode #footer {

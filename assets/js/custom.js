@@ -24,14 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   const headerEl = document.querySelector('#header');
 
-  // Parallax effect for header background
-  window.addEventListener('scroll', function() {
-    const scrollPosition = window.pageYOffset;
-    
-    if (headerEl) {
-      headerEl.style.backgroundPositionY = -scrollPosition * 0.15 + 'px';
-    }
-  });
+  // Keep header background fixed (avoid parallax drift on long scroll).
   
   const avatarCarousel = document.querySelector('[data-avatar-carousel]');
 

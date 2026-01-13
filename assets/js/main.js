@@ -73,17 +73,32 @@
 				breakpoints.on('<=medium', function() {
 
 					$window.off('scroll.strata_parallax');
-					$header.css('background-position', '');
+					$window.off('resize.strata_parallax');
+					$header.css('--header-parallax-y', '0px');
 
 				});
 
 				breakpoints.on('>medium', function() {
+					var maxShift = 0;
 
-					$header.css('background-position', 'left 0px');
+					function computeMaxShift() {
+						// Match the CSS scale(1.15): extra height is 15%, half on top/bottom.
+						var headerH = $header.outerHeight() || 0;
+						maxShift = Math.round(headerH * 0.075);
+						if (maxShift < 24) maxShift = 24; // ensure a visible minimum
+					}
 
-					$window.on('scroll.strata_parallax', function() {
-						$header.css('background-position', 'left ' + (-1 * (parseInt($window.scrollTop()) / settings.parallaxFactor)) + 'px');
-					});
+					function updateParallax() {
+						computeMaxShift();
+						var y = -1 * (parseInt($window.scrollTop()) / settings.parallaxFactor);
+						// Clamp so the scaled background never reveals empty space.
+						y = Math.max(-maxShift, Math.min(0, y));
+						$header.css('--header-parallax-y', y + 'px');
+					}
+
+					updateParallax();
+					$window.on('scroll.strata_parallax', updateParallax);
+					$window.on('resize.strata_parallax', updateParallax);
 
 				});
 
