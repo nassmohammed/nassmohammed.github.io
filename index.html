@@ -231,6 +231,9 @@
 							<li>
 								<button id="tab-streams" role="tab" aria-selected="false" aria-controls="panel-streams" type="button">Stellar Streams</button>
 							</li>
+							<li>
+								<button id="tab-futbol" role="tab" aria-selected="false" aria-controls="panel-futbol" type="button">Fútbol</button>
+							</li>
 							<li class="tabs-indicator" aria-hidden="true"></li>
 						</ul>
 
@@ -378,6 +381,11 @@ plt_kin.plot_params['background']['s'] = 1</code></pre>
 								<span class="image fit"><img src="images/lsst.png" alt="LSST logo" /></span>
 								<p>Thanks to the LSST-DA Data Science Fellowship Program, which is funded by LSST-DA, the Brinson Foundation, the WoodNext Foundation, and the Research Corporation for Science Advancement Foundation; participation in this program has benefited this work.</p>
 							</div>
+						</div>
+
+						<div id="panel-futbol" class="tab-panel" role="tabpanel" aria-labelledby="tab-futbol" hidden>
+							<p>🚧 Work in Progress 🚧</p>
+							<span class="image fit"><img src="images/sim_test.png" alt="Simulation test visualization for fútbol modelling" /></span>
 						</div>
 					</div>
 				</section>
@@ -811,6 +819,8 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 				const hash = decodeURIComponent((location.hash || '').replace('#', '')).toLowerCase();
 				if (hash === 'stellar-streams') {
 					activateTab('tab-streams');
+				} else if (hash === 'futbol-modelling') {
+					activateTab('tab-futbol');
 				} else {
 					activateTab('tab-highlights');
 				}
