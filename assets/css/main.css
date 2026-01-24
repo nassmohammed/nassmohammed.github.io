@@ -2626,14 +2626,14 @@ input, select, textarea {
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: rgba(0, 0, 0, 0.3); /* Transparent grey overlay */
+		background: transparent; /* No overlay in light mode */
 		z-index: 1;
-		opacity: 1; /* Show overlay by default */
+		opacity: 0; /* Hide overlay by default */
 		transition: opacity 0.3s ease;
 	}
 
 	.work-item:hover .image.fit:before {
-		opacity: 0; /* Hide overlay on hover */
+		opacity: 0; /* Keep overlay hidden on hover */
 	}
 
 	.work-item .image.fit img {
@@ -3557,6 +3557,33 @@ body.dark-mode .work-item h3 {
 }
 body.dark-mode .work-item p {
   color: #fff !important;
+}
+body.dark-mode table {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+body.dark-mode table td {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+body.dark-mode table th {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+body.dark-mode table tbody tr {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+body.dark-mode table tbody tr:nth-child(2n + 1) {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+body.dark-mode table tbody tr:nth-child(2n) {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+body.dark-mode table thead {
+  border-bottom-color: rgba(255, 255, 255, 0.18) !important;
+}
+body.dark-mode table tfoot {
+  border-top-color: rgba(255, 255, 255, 0.18) !important;
+}
+body.dark-mode table.alt tbody tr td {
+  border-color: rgba(255, 255, 255, 0.12) !important;
 }
 
 /* XLarge */
