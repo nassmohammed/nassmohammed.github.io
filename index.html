@@ -228,6 +228,18 @@
 				.tabs-indicator {
 					display: none;
 				}
+				/* KaTeX: keep equations within phone width */
+				.katex-display {
+					overflow-x: auto;
+					overflow-y: hidden;
+					-webkit-overflow-scrolling: touch;
+				}
+				.katex-display > .katex {
+					max-width: 100%;
+				}
+				.katex {
+					font-size: 0.95em;
+				}
 			}
 			@media screen and (max-width: 980px) and (min-width: 737px) {
 				#header .image.avatar {
