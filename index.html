@@ -395,17 +395,13 @@ plt_kin.plot_params['background']['s'] = 1</code></pre>
 								<h3>Ranking teams with xG</h3>
 								<p>Let's say we want to find out how strong each team is in the English Premier League. How would you go about this? The simplest approach would be to go and look at the league table.</p>
 								<p>Great, jobs done. Based on results, Arsenal are better than Manchester City are better than Aston Villa and so on. Might as well end the season here, right? Crown Arsenal their 4th league title and give the players and coaching staff an extended vacation ahead of the 26/27 season.</p>
-								<blockquote>
-									<p>"Aston Villa have been really lucky this season and have overperformed their xG (Expected Goals). I think that Liverpool are a better side."</p>
-								</blockquote>
+								<p>Now, a football fan who considers themselves a bit of an analyst may object, <em>"Aston Villa have been really lucky this season and have overperformed their xG (Expected Goals), I think that Liverpool are a better side."</em></p>
 								<p>This fan would have a point. Aston Villa have conceded roughly 9 goals less than they would be expected to based on xG models. Fewer goals conceded means they've irked out wins from what might have been draws, and draws from otherwise losses. This demonstrates the utility in Expected Goals data, which we can treat as the underlying signal to the noise Real Goals scored.</p>
 								<p>That's it then? Look at your xG tables and call it a day, argument settled?</p>
-								<blockquote>
-									<p>"We've already had to face Arsenal home and away. Once we play against relegation fodder, we'd look better in the underlying numbers."</p>
-								</blockquote>
+								<p>Let's introduce a fan who is even more pedantic, perhaps an Aston Villa fan offended by their team no longer being in the top 10. <em>"We've already had to face Arsenal home and away, once we play against relegation fodder we'd look better in the underlying numbers."</em></p>
 								<p>Though they are coping hard, this is a fair consideration. Maybe the best way to rank teams is by calculating how many goals they would be expected to score/concede against the <em>average opponent</em>. This is the philosophy around many football models, such as the Opta power rankings or the now-defunct FiveThirtyEight Soccer Power Index. We would assume that Chelsea generating 3 xG against a weak defense wouldn't say as much about Chelsea's attacking prowess as would 3 xG against a strong defense. But we can't estimate Chelsea's attack in isolation, because every xG number they post depends on who they've faced, and we need a way to also estimate that team's defense. It feels circular, but we can exploit a common tools in the astronomer's toolset to untangle this mess: Bayesian inference.</p>
 
-								<h3>Bayesian inference setup</h3>
+								<h3>Bayes</h3>
 								<p>Bayesian inference is based on Bayes' Theorem, which is often represented as</p>
 								<p>$$P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}$$</p>
 								<p>with $\theta$ representing our model parameters and $D$ our data, and where $P(\theta|D)$ is called the "posterior distribution", $P(D|\theta)$ our "likelihood" of the data given our model, $P(\theta)$ the prior probability, and $P(D)$ the "evidence" of our data.</p>
