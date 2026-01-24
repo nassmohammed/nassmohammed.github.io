@@ -36,6 +36,9 @@
 				font-weight: 600;
 				font-style: italic;
 			}
+			.name-line {
+				display: inline;
+			}
 
 			/* Tab styles (keeps theme; no new colors) */
 			.tabs {
@@ -156,15 +159,29 @@
 				}
 				#header .inner {
 					text-align: left;
-					display: block;
+					display: grid;
+					grid-template-columns: 120px 1fr;
+					column-gap: 1em;
+					align-items: start;
 					width: 100%;
 				}
-				#header .inner h1, #header .inner p {
-					margin-right: 0 !important;
-					margin-left: 0 !important;
+				#header .inner h1 {
+					margin: 0 !important;
 					padding-left: 0;
 					text-align: left;
-					width: 100%;
+					grid-column: 2;
+					grid-row: 1;
+					font-size: 2rem !important;
+					line-height: 1.1;
+				}
+				#header .inner p {
+					margin: 0.35em 0 0 0 !important;
+					padding-left: 0;
+					text-align: left;
+					grid-column: 2;
+					grid-row: 2;
+				}
+				.name-line {
 					display: block;
 				}
 				#header .image.avatar {
@@ -172,6 +189,7 @@
 					width: 120px !important;
 					height: 120px !important;
 					margin: 0 0 1em 0 !important;
+					grid-row: 1 / span 2;
 				}
 				#header .image.avatar img {
 					transform: scale(1.15);
@@ -211,6 +229,11 @@
 					display: none;
 				}
 			}
+			@media screen and (max-width: 980px) and (min-width: 737px) {
+				#header .image.avatar {
+					margin: 0 auto 1em auto !important;
+				}
+			}
 		</style>
 	</head>	
 	<body class="is-preload">
@@ -221,7 +244,7 @@
 					<div class="image avatar">
 						<img src="images/pro.jpg" alt="Professional headshot of Nasser Mohammed" />
 					</div>
-					<h1 style="font-size: 3rem; margin-right: -1.1rem;"><strong>Nasser Mohammed</strong></h1>
+					<h1 style="font-size: 3rem; margin-right: -1.1rem;"><strong><span class="name-line">Nasser</span> <span class="name-line">Mohammed</span></strong></h1>
 					<p style="margin-right: -1.1rem;">PhD Student at the University of Toronto <br/> LSST DA Data Science Fellow 2025-2027
 				</div>
 			</header>
