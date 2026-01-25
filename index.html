@@ -455,7 +455,6 @@ plt_kin.plot_params['background']['s'] = 1</code></pre>
 								<p>How does football/soccer/futbol (hereafter, simply "football") relate to astrophysics? You may see some novelty stats circular about how player X has scored every game played before sunset, or player Y concedes more fouls when Mars is in retrograde. That's the full (tenuous) extent to which astrophysics and football relate. However, with the recent push to implement data and statistics into football clubs' recruitment, team analysis, and more, the tools that are used to study both astrophysics and football have never been more similar.</p>
 								<p>Are you measuring the motion of a star across the sky, or a player across the pitch? Perhaps you're looking for an anomaly in a massive catalogue of astronomical survey data, or maybe the next Erling Haaland across the thousands of professional footballers across the world.</p>
 
-								<h3>Ranking teams with xG</h3>
 								<p>Let's say we want to find out how strong each team is in the English Premier League. How would you go about this? The simplest approach would be to go and look at the league table.</p>
 								<div class="table-wrapper">
 									<table>
@@ -536,8 +535,9 @@ plt_kin.plot_params['background']['s'] = 1</code></pre>
 									</table>
 								</div>
 								<p>Great, jobs done. Based on results, Arsenal are better than Manchester City are better than Aston Villa and so on. Might as well end the season here, right? Crown Arsenal their 4th league title and give the players and coaching staff an extended vacation ahead of the 26/27 season.</p>
-								<p>Now, a football fan who considers themselves a bit of an analyst may object, <em>"Aston Villa have been really lucky this season and have overperformed their xG (Expected Goals), I think that Liverpool are a better side."</em></p>
-								<p>This fan would have a point. Aston Villa have conceded roughly 9 goals less than they would be expected to based on xG models. Fewer goals conceded means they've irked out wins from what might have been draws, and draws from otherwise losses. This demonstrates the utility in Expected Goals data, which we can treat as the underlying signal to the noise Real Goals scored.</p>
+								<p>Now, a football fan who considers themselves a bit of an analyst may object, <em>"Aston Villa have been really lucky this season and have overperformed their xG (Expected Goals)<sup>1</sup>, I think that Liverpool are a better side."</em></p>
+								<p><em><small style="font-size: 0.8em;">1 There have been endless articles on explaining xG, or Expected Goals, so I won't go into details. You can read more <a href="https://theanalyst.com/articles/what-is-expected-goals-xg">here</a>.</small></em></p>
+								<p>This fan would have a point. Aston Villa have conceded roughly 9 goals less than they would be expected to based on xG models. Fewer goals conceded means they've irked out wins from what might have been draws, and draws from otherwise losses. This demonstrates the utility in Expected Goals data, which we can treat as the underlying signal to the noisy Real Goals scored.</p>
 								<div class="table-wrapper">
 									<table>
 										<thead>
@@ -677,13 +677,15 @@ plt_kin.plot_params['background']['s'] = 1</code></pre>
 									</table>
 								</div>
 								<p>That's it then? Look at your xG tables and call it a day, argument settled?</p>
-								<p>Let's introduce a fan who is even more pedantic, perhaps an Aston Villa fan offended by their team no longer being in the top 10. <em>"We've already had to face Arsenal home and away, once we play against relegation fodder we'd look better in the underlying numbers."</em></p>
-								<p>Though they are coping hard, this is a fair consideration. Maybe the best way to rank teams is by calculating how many goals they would be expected to score/concede against the <em>average opponent</em>. This is the philosophy around many football models, such as the Opta power rankings or the now-defunct FiveThirtyEight Soccer Power Index. We would assume that Chelsea generating 3 xG against a weak defense wouldn't say as much about Chelsea's attacking prowess as would 3 xG against a strong defense. But we can't estimate Chelsea's attack in isolation, because every xG number they post depends on who they've faced, and we need a way to also estimate that team's defense. It feels circular, but we can exploit a common tools in the astronomer's toolset to untangle this mess: Bayesian inference.</p>
+								<p>Let's introduce a fan who is even more pedantic, perhaps an Aston Villa fan offended by their team no longer being in the top 10. <em>"We've already had to face Arsenal home and away, once we play against relegation fodder<sup>2</sup> we'd look better in the underlying numbers."</em></p>
+								<p><em><small style="font-size: 0.8em;">2 In the English Premier League, the bottom three placed teams get relegated to the second tier.</small></em></p>
+								<p>Though they are coping hard, this is a fair consideration. Maybe the best way to rank teams is by calculating how many goals they would be expected to score/concede against the <em>average opponent</em>. This is the philosophy around many football models, such as the Opta power rankings or the now-defunct FiveThirtyEight Soccer Power Index<sup>3</sup>. We would assume that Chelsea generating 3 xG against a weak defense wouldn't say as much about Chelsea's attacking prowess as would 3 xG against a strong defense. But we can't estimate Chelsea's attack in isolation, because every xG number they post depends on who they've faced, and we need a way to also estimate that team's defense. It feels circular, but we can exploit a common tools in the astronomer's toolset to untangle this mess: Bayesian inference.</p>
+								<p><em><small style="font-size: 0.8em;">3 First devised in 2009 by Nate Silver to rank international soccer.</small></em></p>
 
-								<h3>Bayes</h3>
 								<p>Bayesian inference is based on Bayes' Theorem, which is often represented as</p>
 								<p>$$P(\theta|D) = \frac{P(D|\theta) \cdot P(\theta)}{P(D)}$$</p>
-								<p>with $\theta$ representing our model parameters and $D$ our data, and where $P(\theta|D)$ is called the "posterior distribution", $P(D|\theta)$ our "likelihood" of the data given our model, $P(\theta)$ the prior probability, and $P(D)$ the "evidence" of our data.</p>
+								<p>with $\theta$ representing our model parameters and $D$ our data, and where $P(\theta|D)$ is called the "posterior distribution", $P(D|\theta)$ our "likelihood" of the data given our model, $P(\theta)$ the prior probability, and $P(D)$<sup>4</sup> the "evidence" of our data.</p>
+								<p><em><small style="font-size: 0.8em;">4 We'll ignore the denominator since its role is to normalize the numerator. It becomes useful if we were performing model comparison.</small></em></p>
 								<p>In plain language, the probability of the model parameters given the data is equal to the product of the likelihood of the data given your model and the prior probability of your model, divided by the evidence for your data.</p>
 								<p>The problem is now to find a way to simultaneously model the strength of all 20 teams' attacks (which we'll call $\alpha_{\text{team}}$) and defenses ($\delta_{\text{team}}$). It also matters how strong a team's home advantage is, so we'll throw that in too and call it $\eta_{\text{team}}$. These are our model parameters $\theta$.</p>
 								<p>The data $D$ is the xG created by the home and away teams in every fixture played so far. For each match, we want the model to produce an underlying expected xG for each side, which I'll call xxG: what you'd expect them to generate against that opponent if you could replay the same game many times.</p>
@@ -691,13 +693,13 @@ plt_kin.plot_params['background']['s'] = 1</code></pre>
 								<p>$$\text{xxG}_{\text{home}} = \exp(\alpha_h + \eta_h - \delta_a), \qquad \text{xxG}_{\text{away}} = \exp(\alpha_a - \delta_h)$$</p>
 								<p>where $\mu$ is a global baseline scoring level (depending on the season) and $H$ is a league-wide home-boost.</p>
 
-								<h3>Likelihood and priors</h3>
 								<p>Next we need the likelihood. This will tell us how plausible a set of team parameters are given the xG generated in the match. If a match has the home team put up an xG score of 0.4 - 1.4, large $\alpha_{\text{home}}$ values would be viewed as less likely than lower ones.</p>
 								<p>Assuming the observed xG is a noisy draw around xxG, using a Gamma distribution (positive values, with some spread):</p>
 								<p>$$\text{xG}_{\text{home}} \sim \mathrm{Gamma}\left(\phi,\ \text{scale}=\frac{\text{xxG}_{\text{home}}}{\phi}\right), \qquad \text{xG}_{\text{away}} \sim \mathrm{Gamma}\left(\phi,\ \text{scale}=\frac{\text{xxG}_{\text{away}}}{\phi}\right)$$</p>
 								<p>Lets spell it out one more time: if the model predicts $\text{xxG}_{\text{home}}=2.0$ and the match xG comes in at 2.1, that set of parameters gets rewarded with a high likelihood; if the match comes in at 0.3, it gets penalized.</p>
 								<p>We also have prior information from clubs' respective historical success, wage bill, and squad experience, that some teams' attacks and defenses would likely be higher (for example, we'd expect Arsenal to score more goals in a season than Sunderland even before a single match has been played). We incorporate this prior belief as the prior probability, $P(\theta)$, in Bayes' theorem.</p>
-								<p>To combine the likelihood and the priors, we don't usually try to solve for the posterior distribution $P(\theta|D)$ in closed form. Instead we sample from it. Any astronomer would be familiar with the Markov Chain Monte Carlo (MCMC) python implementation from Foreman-Mackey et al. (2013). The idea of MCMC is to start with an initial guess for all parameters, then repeatedly propose tweaks to those values. For each proposed set of parameters we calculate the posterior probability. By "walking" across the posterior space, we get many draws rather than one best answer. This means we can say not just what Arsenal's attack strength probably is, but how confident we are.</p>
+								<p>To combine the likelihood and the priors, we don't usually try to solve for the posterior distribution $P(\theta|D)$ in closed form. Instead we sample from it. Any astronomer would be familiar with the Markov Chain Monte Carlo (MCMC) python implementation from Foreman-Mackey et al. (2013)<sup>5</sup>. The idea of MCMC is to start with an initial guess for all parameters, then repeatedly propose tweaks to those values. For each proposed set of parameters we calculate the posterior probability. By "walking" across the posterior space, we get many draws rather than one best answer. This means we can say not just what Arsenal's attack strength probably is, but how confident we are.</p>
+								<p><em><small style="font-size: 0.8em;">5 <a href="https://emcee.readthedocs.io/en/stable/index.html">emcee.readthedocs.io/en/stable/index.html</a></small></em></p>
 
 								<h3>Team strengths after 22 matches (2025/26)</h3>
 								<pre><code>Overall strength (attack + defense + 50% home):
@@ -724,11 +726,11 @@ plt_kin.plot_params['background']['s'] = 1</code></pre>
 18. Wolves               2.091
 19. West Ham             2.074
 20. Burnley              1.879</code></pre>
-								<p>Sorry Villians, you still fall short of the top half, and way below your 3rd place in real matches played.</p>
+								<p>Sorry Villians<sup>6</sup>, you still fall short of the top half, and way below your 3rd place in real matches played.</p>
+								<p><em><small style="font-size: 0.8em;">6 Nickname for Aston Villa supporters.</small></em></p>
 								<p>If we're interested in which teams have the best attacks/defenses, we can visualize a scatter plot with attack strength on the x-axis and defense on the y-axis. From this, we see that Arsenal's success can be attributed to their anomalous defense strength, and that you should count on Burnley conceding plenty of goals.</p>
 								<span class="image fit"><img src="images/scatter.png" alt="Scatter plot of attack strength vs defense strength" /></span>
 
-								<h3>Fixture simulation</h3>
 								<p>One last thing we can do now that we have our team strengths is to then simulate fixtures. Going back to our formula for calculating xxG, we can plug in any home/away team and get estimations from win/draw/lose probabilities to clean sheet odds and more.</p>
 								<pre><code>============================================================
   Manchester United (H) vs Arsenal (A)
