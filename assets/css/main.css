@@ -2134,6 +2134,10 @@ input, select, textarea {
 				width: 100%;
 			}
 
+			.figure-caption {
+				text-align: center;
+			}
+
 			.image.avatar {
 				position: relative;
 				display: inline-block;

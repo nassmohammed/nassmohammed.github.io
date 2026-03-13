@@ -345,22 +345,24 @@
 
 						<div id="panel-streams" class="tab-panel" role="tabpanel" aria-labelledby="tab-streams" hidden>
 							<div class="stream-tab-content">
+
+								<p>Milky Way-like galaxies evolved hierarchically, accreting mass through many mergers within a <strong>dark matter</strong> (DM) halo. Stellar streams are a result of this process; a host galaxy's potential disrupts satellites (dwarf galaxies, globular clusters) leading them to form tidal tails.</p>
+								<span class="image fit" style="width: 55%; max-width: 500px; margin: 0 auto;"><img src="images/s5_streamart.png" alt="Artist depiction of stellar streams in orbit around host galaxy" /></span>
+								<p class="figure-caption"><em>Artist depiction of stellar streams in orbit around host galaxy | from S5 Collaboration</em></p>
+								<p>Theories of cold and alternative DM <em>disagree</em> on predictions at the sub-galactic scale. Stellar streams offer a powerful means to indirectly constrain the DM substructure within the Milky Way.</p>
+								<p>However, to do this we need robust membership counts for stellar streams within our Galaxy. There are multiple ways to approach characterizing streams, but in this tutorial you will be walked through using <strong>finite mixture models</strong> to disentangle stellar streams from surrounding stars.</p>
+								
 								<header class="major">
 									<h2 style="color: #000;">How to Characterize Stellar Streams</h2>
 								</header>
-
-								<h3>What are Stellar Streams?</h3>
-								<p>Milky Way-like galaxies evolved hierarchically, accreting mass through many mergers within a <strong>dark matter</strong> (DM) halo. Stellar streams are a result of this process; a host galaxy's potential disrupts satellites (dwarf galaxies, globular clusters) leading them to form tidal tails.</p>
-								<span class="image fit"><img src="images/s5_streamart.png" alt="Artist depiction of stellar streams in orbit around host galaxy" /></span>
-								<p><em>Artist depiction of stellar streams in orbit around host galaxy | from S5 Collaboration</em></p>
-								<p>Theories of cold and alternative DM <em>disagree</em> on predictions at the sub-galactic scale. Stellar streams offer a powerful means to indirectly constrain the DM substructure within the Milky Way.</p>
-								<p>However, to do this we need robust membership counts for stellar streams within our Galaxy. There are multiple ways to approach characterizing streams, but in this tutorial you will be walked through using <strong>finite mixture models</strong> to disentangle stellar streams from surrounding stars.</p>
-
 								<h3>Mixture Model Approach</h3>
 								<p>Mixture models are powerful statistical tools to describe a set of datapoints that come from different distinct populations, even if we can't directly observe which data points belong to which group.</p>
 								<p>In this tutorial, we will assume that the field of stars we narrow in on can be described by two distinct Gaussian populations: one for the stream, and one for the 'background' (non-stream stars).</p>
-								<span class="image fit"><img src="images/sylgr_tGMM_ex.png" alt="Example truncated-Gaussian Mixture Model" /></span>
-								<p><em>Example truncated-Gaussian Mixture Model</em></p>
+								<span class="image fit" style="width: 55%; max-width: 500px; margin: 0 auto;">
+  									<img src="images/sylgr_tGMM_ex.png" alt="Example truncated-Gaussian Mixture Model" />
+								</span>
+
+								<p class="figure-caption"><em>Example truncated-Gaussian Mixture Model</em></p>
 
 								<h3>MCMC</h3>
 								<p>We have to fit for the best mixture of models, and to do that we use Bayesian statistics.</p>
