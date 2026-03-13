@@ -2701,6 +2701,7 @@ input, select, textarea {
 		padding: 8em 4em;
 		position: fixed;
 		overflow: hidden;
+		clip-path: inset(0);
 		z-index: 10;
 		text-align: right;
 		top: 0;
