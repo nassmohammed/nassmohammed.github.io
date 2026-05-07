@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentations</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #121212; /* Dark background for body */
+            color: #e0e0e0; /* Light text color for body */
+        }
+        .container {
+            text-align: center;
+            max-width: 800px; /* Added to constrain width */
+            margin: auto; /* Added for centering container */
+        }
+        .authors { /* New style for authors */
+            font-style: italic;
+            color: #bbb; /* Lighter text for authors in dark mode */
+            margin-bottom: 20px;
+        }
+        .abstract-container { /* New class for the scrollable abstract */
+            max-height: 300px; /* Adjust as needed */
+            overflow-y: auto;
+            border: 1px solid #444; /* Darker border */
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left; /* Align text to left for readability */
+            background-color: #1e1e1e; /* Dark background for abstract box */
+            color: #e0e0e0; /* Light text for abstract */
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 18px;
+            color: #e0e0e0; /* Light text for buttons */
+            background-color: #333; /* Darker button background */
+            border: 1px solid #555; /* Border for buttons */
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #555; /* Slightly lighter on hover */
+            color: #fff;
+        }
+        footer { /* New style for the footer */
+            margin-top: 30px;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #aaa; /* Lighter grey for footer text */
+        }
+        footer a { /* Style for the link in the footer */
+            color: #bb86fc; /* A light purple for links, common in dark themes */
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+            color: #d0a0ff; /* Lighter purple on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>EXPLORE Summer School 2025: DESI DR1 Stream Tutorial</h1>
+        <p class="authors">Nasser Mohammed, Ting S. Li</p>
+        <div class="abstract-container">
+            <p>Workshop Description: This comprehensive tutorial introduces participants to the analysis of stellar streams using data from the Dark Energy Spectroscopic Instrument (DESI) Data Release 1. Stellar streams are the fossil remnants of disrupted satellite galaxies and globular clusters, serving as powerful probes of dark matter and galactic evolution. This hands-on workshop combines theoretical foundations with practical Python implementations, guiding participants through the complete workflow of stellar stream analysis—from data acquisition and preprocessing to advanced kinematic characterization and dynamical modeling. Participants will learn to work with large astronomical datasets, apply machine learning techniques for stellar classification, and perform Bayesian analysis for stream membership determination. The tutorial includes interactive Jupyter notebooks covering Gaia data integration, Hertzsprung-Russell diagram analysis, orbital dynamics, and visualization techniques specifically tailored for DESI survey data. By the end of this workshop, participants will have gained practical experience with cutting-edge astronomical data analysis tools and techniques used in modern galactic archaeology research.</p>
+        </div>
+        <a href="explore_summer_school.html" class="button">Tutorial Landing Page</a>
+        <a href="https://github.com/nassmohammed/DESI-DR1_streamTutorial" class="button">GitHub Repository</a>
+        <a href="../html_ex/gaia9.html" class="button">Example Notebooks</a>
+    </div>
+    <footer>
+        <p><a href="index.html">Personal Website</a></p>
+    </footer>
+</body>
+</html>
