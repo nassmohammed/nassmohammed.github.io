@@ -151,6 +151,29 @@
 				transform: scale(1.3);
 			}
 
+			/* Highlight thumbnails: keep a consistent aspect ratio */
+			.work-item .image.fit {
+				display: block;
+				width: 100%;
+				aspect-ratio: 16 / 10;
+				overflow: hidden;
+				border-radius: 0.35em;
+			}
+			.work-item .image.fit img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+			/* Show the entire plot at the shared card height, with white bars top/bottom */
+			.work-item .image.fit.contain {
+				background: #fff;
+			}
+			.work-item .image.fit.contain img {
+				object-fit: contain;
+				padding: 0;
+			}
+
 				/* Mobile-specific styles */
 			@media screen and (max-width: 736px) {
 				#header {
@@ -261,7 +284,7 @@
 						<img src="images/pro.jpg" alt="Professional headshot of Nasser Mohammed" />
 					</div>
 					<h1 style="font-size: 3rem; margin-right: -1.1rem;"><strong><span class="name-line">Nasser</span> <span class="name-line">Mohammed</span></strong></h1>
-					<p style="margin-right: -1.1rem;">PhD Student at the University of Toronto <br/> LSST DA Data Science Fellow 2025-2027
+					<p style="margin-right: -1.1rem;">PhD Candidate at the University of Toronto <br/> LSST DA Data Science Fellow 2025-2027
 				</div>
 			</header>
 
@@ -274,12 +297,12 @@
 							<h2 style="font-size: 5rem; margin: -1rem; margin-left: 0.5rem; color: #181818; opacity: 1.0;">About Me</h2>
 						</header>
 						<p style="color: #000000; font-size: 1.2em;">
-						  I am a second year PhD Student in the David A. Dunlap Department of Astronomy & Astrophysics. My current research aims to constrain dark matter and the evolution of our Milky Way through the study of <span class="highlight-text">Stellar Streams</span>. 
+						  I am a PhD Candidate at the David A. Dunlap Department of Astronomy & Astrophysics. My current research aims to constrain dark matter and the evolution of our Milky Way through the study of <span class="highlight-text">Stellar Streams</span>. 
 						 My past work studied our polarized radio sky with the CHIME instrument as a part of the Global Magneto-Ionic Mapping Survey.
 						</p>
 						<ul class="actions">
 							<li><a href="https://ui.adsabs.harvard.edu/search/filter_author_facet_hier_fq_author=AND&filter_author_facet_hier_fq_author=author_facet_hier%3A%221%2FMohammed%2C%20N%2FMohammed%2C%20Nasser%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_author%7D&fq_author=(author_facet_hier%3A%221%2FMohammed%2C%20N%2FMohammed%2C%20Nasser%22)&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&p_=0&q=%20author%3A%22Mohammed%2C%20Nasser%22&sort=date%20desc%2C%20bibcode%20desc" class="button">My Publications</a></li>
-							<li><a href="assets/cv.pdf" class="button" target="_blank" rel="noopener">My CV</a></li>
+							<li><a href="assets/cv26.pdf" class="button" target="_blank" rel="noopener">My CV</a></li>
 							<li><a href="https://www.astro.utoronto.ca/people/graduate-students/name/nasser-mohammed/" class="button" target="_blank">UofT Page</a></li>
 						</ul>
 					</section>
@@ -303,7 +326,15 @@
 						<div id="panel-highlights" class="tab-panel" role="tabpanel" aria-labelledby="tab-highlights">
 							<div class="row">
 								<article class="col-6 col-12-xsmall work-item">
-									<span class="image fit"><img src="assets/css/images/magellan.jpeg" alt="Magellan telescope at Las Campanas Observatory" /></span>
+									<span class="image fit"><img src="images/thumbs/figure1.png" alt="Figure from N. Mohammed et al. 2026 on the C-19 stellar stream" /></span>
+										<h3>The C-19 Stellar Stream</h3>
+										<p>Read more about the extremely metal-poor stellar stream in N. Mohammed et al. 2026</p>
+										<div class="work-item-details" aria-hidden="true">
+											<a href="https://ui.adsabs.harvard.edu/abs/2026ApJ..1005..200M/abstract" target="_blank" rel="noopener">NASA/ADS</a>
+										</div>
+									</article>
+									<article class="col-6 col-12-xsmall work-item">
+										<span class="image fit"><img src="assets/css/images/magellan.jpeg" alt="Magellan telescope at Las Campanas Observatory" /></span>
 									<h3>Observation Trip</h3>
 									<p>Had the opportunity to observe at the Los Campanas Observatory in Chile 🇨🇱. </p>
 									<div class="work-item-details" aria-hidden="true">
@@ -359,10 +390,10 @@
 								<p>Mixture models are powerful statistical tools to describe a set of datapoints that come from different distinct populations, even if we can't directly observe which data points belong to which group.</p>
 								<p>In this tutorial, we will assume that the field of stars we narrow in on can be described by two distinct Gaussian populations: one for the stream, and one for the 'background' (non-stream stars).</p>
 								<span class="image fit" style="width: 55%; max-width: 500px; margin: 0 auto;">
-  									<img src="images/sylgr_tGMM_ex.png" alt="Example truncated-Gaussian Mixture Model" />
+  									<img src="images/anatomy.png" alt="Sketch of the process of modelling a stream." />
 								</span>
 
-								<p class="figure-caption"><em>Example truncated-Gaussian Mixture Model</em></p>
+								<p class="figure-caption"><em>Sketch of the process of modelling a stream.</em></p>
 
 								<h3>MCMC</h3>
 								<p>We have to fit for the best mixture of models, and to do that we use Bayesian statistics.</p>
