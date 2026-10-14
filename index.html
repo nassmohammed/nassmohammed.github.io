@@ -91,42 +91,6 @@
 			.tab-panel[hidden] {
 				display: none;
 			}
-			.stream-tab-content img {
-				max-width: 100%;
-				height: auto;
-			}
-
-			/* Code legibility (especially in dark mode) */
-			.stream-tab-content pre {
-				overflow-x: auto;
-				border-radius: 6px;
-				padding: 0.9em 1em;
-				background: rgba(0, 0, 0, 0.04);
-			}
-			.stream-tab-content pre code {
-				color: inherit;
-				background: transparent;
-				border: none;
-				margin: 0;
-				padding: 0;
-			}
-			.stream-tab-content code {
-				/* Override theme's light inline-code styling where needed */
-				background: rgba(0, 0, 0, 0.04);
-				border-color: rgba(0, 0, 0, 0.08);
-			}
-			body.dark-mode .stream-tab-content pre {
-				background: rgba(0, 0, 0, 0.35);
-			}
-			body.dark-mode .stream-tab-content pre,
-			body.dark-mode .stream-tab-content pre code {
-				color: rgba(255, 255, 255, 0.92);
-			}
-			body.dark-mode .stream-tab-content code {
-				background: rgba(255, 255, 255, 0.10);
-				border-color: rgba(255, 255, 255, 0.14);
-				color: rgba(255, 255, 255, 0.92);
-			}
 
 			/* KaTeX: restore fraction bar visibility in dark mode */
 			body.dark-mode .katex .frac-line {
@@ -166,6 +130,10 @@
 				object-position: center;
 			}
 			/* Show the entire plot at the shared card height, with white bars top/bottom */
+			/* Dim individual highlight photos */
+			.work-item .image.fit.dimmed img {
+				filter: brightness(0.75);
+			}
 			.work-item .image.fit.contain {
 				background: #fff;
 			}
@@ -304,6 +272,7 @@
 							<li><a href="https://ui.adsabs.harvard.edu/search/filter_author_facet_hier_fq_author=AND&filter_author_facet_hier_fq_author=author_facet_hier%3A%221%2FMohammed%2C%20N%2FMohammed%2C%20Nasser%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_author%7D&fq_author=(author_facet_hier%3A%221%2FMohammed%2C%20N%2FMohammed%2C%20Nasser%22)&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&p_=0&q=%20author%3A%22Mohammed%2C%20Nasser%22&sort=date%20desc%2C%20bibcode%20desc" class="button">My Publications</a></li>
 							<li><a href="assets/cv26.pdf" class="button" target="_blank" rel="noopener">My CV</a></li>
 							<li><a href="https://www.astro.utoronto.ca/people/graduate-students/name/nasser-mohammed/" class="button" target="_blank">UofT Page</a></li>
+							<li><a href="https://sazabi4.github.io/" class="button" target="_blank" rel="noopener">Lab Website</a></li>
 						</ul>
 					</section>
 
@@ -315,10 +284,7 @@
 								<button id="tab-highlights" role="tab" aria-selected="true" aria-controls="panel-highlights" type="button">Highlights</button>
 							</li>
 							<li>
-								<button id="tab-streams" role="tab" aria-selected="false" aria-controls="panel-streams" type="button">Stellar Streams</button>
-							</li>
-							<li>
-								<button id="tab-futbol" role="tab" aria-selected="false" aria-controls="panel-futbol" type="button">Fútbol</button>
+								<button id="tab-futbol" role="tab" aria-selected="false" aria-controls="panel-futbol" type="button">Other Projects</button>
 							</li>
 							<li class="tabs-indicator" aria-hidden="true"></li>
 						</ul>
@@ -326,7 +292,7 @@
 						<div id="panel-highlights" class="tab-panel" role="tabpanel" aria-labelledby="tab-highlights">
 							<div class="row">
 								<article class="col-6 col-12-xsmall work-item">
-									<span class="image fit"><img src="images/thumbs/nfc.jpg" alt="Near Field Cosmology conference in Toronto" /></span>
+									<span class="image fit dimmed"><img src="images/thumbs/nfc.jpg" alt="Near Field Cosmology conference in Toronto" /></span>
 										<h3>Near Field Cosmology in Toronto</h3>
 										<p>We welcomed nearly 100 researchers to Toronto to tackle the challenge of <a href="https://www.fieldsinstitute.ca/activities/26-27/Nearfieldcosmology" target="_blank" rel="noopener">Near Field Cosmology in the Era of Big Data</a>.</p>
 										<div class="work-item-details" aria-hidden="true">
@@ -357,13 +323,10 @@
 								Read more about the tadpole and our discoveries <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ad5099" target="_blank" rel="noopener">here</a>.
 							</div>
 						</article>
-						<article class="col-6 col-12-xsmall work-item">
+						<article class="col-6 col-12-xsmall work-item" style="cursor: default;">
 							<span class="image fit"><img src="images/thumbs/outreach.jpg" alt="" /></span>
 							<h3 id="tadpole-title">Outreach</h3>
-							<p>Highlights of recent public outreach efforts.</p>
-							<div class="work-item-details" aria-hidden="true">
-								Reach out through email for requests for public outreach talks or events!
-							</div>
+							<p>Reach out through email for requests for public outreach talks or events!</p>
 						</article>
 						<!-- <article class="col-6 col-12-xsmall work-item">
 							<a href="images/fulls/finishers.png" class="image fit thumb" onclick="changeText(event)"><img src="images/fulls/finishers.png" alt="" /></a>
@@ -374,113 +337,9 @@
 							</div>
 						</div>
 
-						<div id="panel-streams" class="tab-panel" role="tabpanel" aria-labelledby="tab-streams" hidden>
-							<div class="stream-tab-content">
-
-								<p>Milky Way-like galaxies evolved hierarchically, accreting mass through many mergers within a <strong>dark matter</strong> (DM) halo. Stellar streams are a result of this process; a host galaxy's potential disrupts satellites (dwarf galaxies, globular clusters) leading them to form tidal tails.</p>
-								<span class="image fit" style="width: 55%; max-width: 500px; margin: 0 auto;"><img src="images/s5_streamart.png" alt="Artist depiction of stellar streams in orbit around host galaxy" /></span>
-								<p class="figure-caption"><em>Artist depiction of stellar streams in orbit around host galaxy | from S5 Collaboration</em></p>
-								<p>Theories of cold and alternative DM <em>disagree</em> on predictions at the sub-galactic scale. Stellar streams offer a powerful means to indirectly constrain the DM substructure within the Milky Way.</p>
-								<p>However, to do this we need robust membership counts for stellar streams within our Galaxy. There are multiple ways to approach characterizing streams, but in this tutorial you will be walked through using <strong>finite mixture models</strong> to disentangle stellar streams from surrounding stars.</p>
-								
-								<header class="major">
-									<h2 style="color: #000;">How to Characterize Stellar Streams</h2>
-								</header>
-								<h3>Mixture Model Approach</h3>
-								<p>Mixture models are powerful statistical tools to describe a set of datapoints that come from different distinct populations, even if we can't directly observe which data points belong to which group.</p>
-								<p>In this tutorial, we will assume that the field of stars we narrow in on can be described by two distinct Gaussian populations: one for the stream, and one for the 'background' (non-stream stars).</p>
-								<span class="image fit" style="width: 55%; max-width: 500px; margin: 0 auto;">
-  									<img src="images/anatomy.png" alt="Sketch of the process of modelling a stream." />
-								</span>
-
-								<p class="figure-caption"><em>Sketch of the process of modelling a stream.</em></p>
-
-								<h3>MCMC</h3>
-								<p>We have to fit for the best mixture of models, and to do that we use Bayesian statistics.</p>
-								<p>$$P(\theta|D) = \frac{\mathcal{L}(D|\theta) \cdot P(\theta)}{P(D)}$$</p>
-								<p>Where $\mathcal{L}(D|\theta)$ is the likelihood function, $P(\theta)$ is the prior probability, and $P(D)$ is the evidence, with $\theta$ representing our model parameters and $D$ the observed data.</p>
-								<blockquote>
-									The probability of our model parameters given our observed data is equal to the likelihood of the data given the model parameters multiplied by the prior probability of the model parameters, divided by the probability of the data.
-								</blockquote>
-								<p>In practice, we can mostly ignore the evidence term ($P(D)$) since it is a constant.</p>
-								<p>To find the best-fitting parameters, we need to sample from the posterior distribution $P(\theta|D)$. This is where <strong>Markov Chain Monte Carlo (MCMC)</strong> comes in.</p>
-								<p>For mixture models, MCMC allows us to simultaneously fit:</p>
-								<ul>
-									<li>Stream population parameters (mean position, velocity dispersion, metallicity)</li>
-									<li>Background population parameters</li>
-									<li>Membership probabilities for each star</li>
-								</ul>
-								<p>The chain explores regions of parameter space with higher posterior probability more frequently, giving us both best-fit values and uncertainty estimates.</p>
-
-								<h3>Try it yourself!</h3>
-								<p>I have a tutorial on GitHub that you can use yourself to characterize stellar streams. Run the following terminal command in the directory you'll be working in:</p>
-								<pre><code>git clone https://github.com/nassmohammed/DESI-DR1_streamTutorial.git</code></pre>
-								<p>Included is:</p>
-								<ul>
-									<li><code>data/</code> (small tutorial files), including <code>dotter/</code>, <code>sf3_only_table.csv</code>, and <code>streamfinder_gaiadr3.fits</code></li>
-									<li><code>*.py</code> scripts powering the tutorial</li>
-									<li><code>streamTutorial.ipynb</code> (the main notebook)</li>
-									<li><code>env.yml</code> (environment setup)</li>
-								</ul>
-								<p><strong>Not included:</strong> <code>mwsall-pix-iron.fits</code> (12&nbsp;GB DESI DR1 stellar catalogue data).</p>
-
-								<h4>Download DESI DR1 Stellar Catalogue</h4>
-								<p>You can download from DESI (see the link in the tutorial) or from your terminal with:</p>
-								<pre><code>curl -o mwsall-pix-iron.fits https://data.desi.lbl.gov/public/dr1/vac/dr1/mws/iron/v1.0/mwsall-pix-iron.fits</code></pre>
-								<p>Read <a href="https://data.desi.lbl.gov/doc/releases/dr1/vac/mws/" target="_blank" rel="noopener">the DESI DR1 stellar catalogue overview</a>. The corresponding paper (Kosposov et al. 2025) is <a href="https://ui.adsabs.harvard.edu/abs/2025arXiv250514787K/abstract" target="_blank" rel="noopener">here</a>.</p>
-								<p>If space is a concern, contact <code>ting [dot] li [at] astro [dot] utoronto [dot] ca</code> to get set up on the Eridanus server (for 2025 EXPLORE participants).</p>
-								<p><a href="https://colab.research.google.com/drive/1tf9Opu2dVatyKhWVHd1HcKW3n0aVhzZq?usp=sharing" target="_blank" rel="noopener">Google collab notebook</a> for running on weaker laptops.</p>
-
-								<h4>Install Python Environment</h4>
-								<pre><code>conda env create -f env.yml</code></pre>
-
-								<h3>User tips &amp; FAQ</h3>
-								<h4>Plotting options</h4>
-								<p><code>background = True</code>: show the background stars in the figure for reference.</p>
-								<p><code>showStream = True</code>: show STREAMFINDER stars, both those that have survived the cuts (as diamonds) and those cut out (as Xs).</p>
-								<p><code>show_sf_only = False</code>: shows STREAMFINDER stars that are NOT IN DESI as hollow diamonds.</p>
-								<p><code>show_initial(\optimized\mcmc)_splines = True</code>: shows the respective spline track on top of the figure.</p>
-								<p><code>plot_params</code>: a dictionary to change plotting properties without editing the .py file.</p>
-								<p>Example usage:</p>
-								<pre><code>plt_kin.plot_params['sf_in_desi']['alpha'] = 0.5
-plt_kin.plot_params['sf_in_desi']['zorder'] = 10
-plt_kin.plot_params['background']['alpha'] = 0.2
-plt_kin.plot_params['background']['s'] = 1</code></pre>
-
-								<h4>Q: I don't see a stream in the kinematic plots, should I run the MCMC anyway?</h4>
-								<p>A: Don't waste your time. If you have difficulty spotting a stream in the trimmed data, so will the MCMC walkers. Try to adjust your cuts and compare with the location of SF stars.</p>
-
-								<h4>Q: How long will it take to run the MCMC?</h4>
-								<p>A: It depends on your device. On Eridanus, 5000 burn-ins with 5000 iterations is about 20 minutes. On Google Colab, about an hour. On an M3 MacBook Pro, about 6 minutes.</p>
-
-								<h4>Q: How do I know if the MCMC found anything?</h4>
-								<p>A: Diagnostic plots help judge performance: chain plots (watch for hitting an invisible wall or never converging) and corner plots (look for symmetric, well-defined distributions).</p>
-
-								<h3>Citing this work</h3>
-								<pre><code>@misc{DESI-DR1_streamTutorial,
-  author       = {Nasser Mohammed},
-  title        = {DESI-DR1\_streamTutorial},
-  year         = {2025},
-  publisher    = {GitHub},
-  journal      = {GitHub repository},
-  howpublished = {\url{https://github.com/nassmohammed/DESI-DR1_streamTutorial}},
-}</code></pre>
-
-								<h3>Bibliography</h3>
-								<p>Foreman-Mackey, D., Hogg, D. W., Lang, D., &amp; Goodman, J. (2013). <em>emcee: The MCMC Hammer</em>. Publications of the Astronomical Society of the Pacific, 125(925), 306. https://doi.org/10.1086/670067</p>
-								<p>Ibata, R., et al. (2024). <em>Charting the Galactic Acceleration Field. II</em>. The Astrophysical Journal, 967(1), 89. https://doi.org/10.3847/1538-4357/ad382d</p>
-								<p>Koposov, S. E., et al. (2025). <em>DESI Data Release 1: Stellar Catalogue</em>. arXiv:2505.14787.</p>
-								<p>Mateu, C. (2023). <em>galstreams</em>. MNRAS, 520(4), 5225–5258. https://doi.org/10.1093/mnras/stad321</p>
-
-								<h3>Acknowlegements</h3>
-								<span class="image fit"><img src="images/desi.png" alt="DESI" /></span>
-								<span class="image fit"><img src="images/lsst.png" alt="LSST logo" /></span>
-								<p>Thanks to the LSST-DA Data Science Fellowship Program, which is funded by LSST-DA, the Brinson Foundation, the WoodNext Foundation, and the Research Corporation for Science Advancement Foundation; participation in this program has benefited this work.</p>
-							</div>
-						</div>
-
 						<div id="panel-futbol" class="tab-panel" role="tabpanel" aria-labelledby="tab-futbol" hidden>
 
+								<h2>Premier League Team Strength Modelling</h2>
 								<p>How does football/soccer/futbol (hereafter, simply "football") relate to astrophysics? You may see some novelty stats circular about how player X has scored every game played before sunset, or player Y concedes more fouls when Mars is in retrograde. That's the full (tenuous) extent to which astrophysics and football relate. However, with the recent push to implement data and statistics into football clubs' recruitment, team analysis, and more, the tools that are used to study both astrophysics and football have never been more similar.</p>
 
 								<p>Want to dig into the full modelling walkthrough? Read the complete piece on Substack.</p>
@@ -918,9 +777,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 				});
 
 				const hash = decodeURIComponent((location.hash || '').replace('#', '')).toLowerCase();
-				if (hash === 'stellar-streams') {
-					activateTab('tab-streams');
-				} else if (hash === 'futbol-modelling') {
+				if (hash === 'other-projects' || hash === 'futbol-modelling') {
 					activateTab('tab-futbol');
 				} else {
 					activateTab('tab-highlights');
